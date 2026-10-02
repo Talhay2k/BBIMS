@@ -27,6 +27,7 @@ import {
 } from '../components/bbims/initialData';
 
 import { BbimsHeader } from '../components/bbims/BbimsHeader';
+import { BbimsSidebar } from '../components/bbims/BbimsSidebar';
 import { StatsSummary } from '../components/bbims/StatsSummary';
 import { BloodGroupMatrix } from '../components/bbims/BloodGroupMatrix';
 import { InventoryTab } from '../components/bbims/InventoryTab';
@@ -91,6 +92,7 @@ export default function Welcome() {
     const [activeTab, setActiveTab] = useState('dashboard');
     const [selectedFacilityId, setSelectedFacilityId] = useState('All');
     const [matrixBloodType, setMatrixBloodType] = useState('All');
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
     // Data States (initialized with rich fallback data so screen NEVER blackouts)
     const [units, setUnits] = useState<BloodUnit[]>(initialUnits);
@@ -392,13 +394,16 @@ export default function Welcome() {
 
     return (
         <ErrorBoundary>
-            <div className="min-h-screen bg-slate-950 pb-16 font-sans text-slate-100 selection:bg-rose-500 selection:text-white">
+            <div className="flex min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-rose-500 selection:text-white">
                 <Head title="Blood Bank Inventory Management System (BBIMS)" />
                 <Toaster position="top-right" theme="dark" richColors />
 
-                <BbimsHeader
+                {/* Left Collapsible Sidebar */}
+                <BbimsSidebar
                     activeTab={activeTab}
                     setActiveTab={setActiveTab}
+                    isCollapsed={isSidebarCollapsed}
+                    setIsCollapsed={setIsSidebarCollapsed}
                     facilities={facilities}
                     selectedFacilityId={selectedFacilityId}
                     setSelectedFacilityId={setSelectedFacilityId}
@@ -409,117 +414,141 @@ export default function Welcome() {
                     pendingRequestsCount={pendingRequestsCount}
                 />
 
-                <main className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-                    <StatsSummary
-                        units={filteredUnits}
-                        donors={safeDonors}
-                        requests={safeRequests}
-                        drives={safeDrives}
+                {/* Main Body Column */}
+                <div className="flex min-w-0 flex-1 flex-col pb-16">
+                    <BbimsHeader
+                        activeTab={activeTab}
+                        setActiveTab={setActiveTab}
+                        facilities={facilities}
+                        selectedFacilityId={selectedFacilityId}
+                        setSelectedFacilityId={setSelectedFacilityId}
+                        onOpenIntakeModal={() => setIsIntakeOpen(true)}
+                        onOpenRequestModal={() => setIsRequestOpen(true)}
+                        onOpenDonorModal={() => setIsDonorOpen(true)}
+                        expiringAlertsCount={expiringCount}
+                        pendingRequestsCount={pendingRequestsCount}
                     />
 
-                    <BloodGroupMatrix
-                        units={safeUnits}
-                        selectedType={matrixBloodType}
-                        onSelectType={setMatrixBloodType}
-                    />
+                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-6 sm:px-6 lg:px-8">
+                        <StatsSummary
+                            units={filteredUnits}
+                            donors={safeDonors}
+                            requests={safeRequests}
+                            drives={safeDrives}
+                        />
 
-                    {activeTab === 'dashboard' && (
-                        <div className="space-y-6">
+                        <BloodGroupMatrix
+                            units={safeUnits}
+                            selectedType={matrixBloodType}
+                            onSelectType={setMatrixBloodType}
+                        />
+
+                        {activeTab === 'dashboard' && (
+                            <div className="space-y-6">
+                                <InventoryTab
+                                    units={filteredUnits}
+                                    onOpenIntakeModal={() =>
+                                        setIsIntakeOpen(true)
+                                    }
+                                    onUpdateStatus={handleUpdateStatus}
+                                />
+                                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                                    <AiForecastTab aiData={aiData} />
+                                    <RequestsDispatchTab
+                                        requests={safeRequests}
+                                        units={safeUnits}
+                                        onOpenCreateRequestModal={() =>
+                                            setIsRequestOpen(true)
+                                        }
+                                        onCrossMatchUnits={
+                                            handleCrossMatchUnits
+                                        }
+                                        onDispatchOrder={handleDispatchOrder}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'inventory' && (
                             <InventoryTab
                                 units={filteredUnits}
                                 onOpenIntakeModal={() => setIsIntakeOpen(true)}
                                 onUpdateStatus={handleUpdateStatus}
                             />
-                            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-                                <AiForecastTab aiData={aiData} />
-                                <RequestsDispatchTab
-                                    requests={safeRequests}
-                                    units={safeUnits}
-                                    onOpenCreateRequestModal={() =>
-                                        setIsRequestOpen(true)
-                                    }
-                                    onCrossMatchUnits={handleCrossMatchUnits}
-                                    onDispatchOrder={handleDispatchOrder}
-                                />
-                            </div>
-                        </div>
-                    )}
+                        )}
 
-                    {activeTab === 'inventory' && (
-                        <InventoryTab
-                            units={filteredUnits}
-                            onOpenIntakeModal={() => setIsIntakeOpen(true)}
-                            onUpdateStatus={handleUpdateStatus}
-                        />
-                    )}
+                        {activeTab === 'donors' && (
+                            <DonorsTab
+                                donors={safeDonors}
+                                facilities={facilities}
+                                onOpenRegisterModal={() => setIsDonorOpen(true)}
+                                onRecordDonation={handleRecordDonation}
+                            />
+                        )}
 
-                    {activeTab === 'donors' && (
-                        <DonorsTab
-                            donors={safeDonors}
-                            facilities={facilities}
-                            onOpenRegisterModal={() => setIsDonorOpen(true)}
-                            onRecordDonation={handleRecordDonation}
-                        />
-                    )}
+                        {activeTab === 'requests' && (
+                            <RequestsDispatchTab
+                                requests={safeRequests}
+                                units={safeUnits}
+                                onOpenCreateRequestModal={() =>
+                                    setIsRequestOpen(true)
+                                }
+                                onCrossMatchUnits={handleCrossMatchUnits}
+                                onDispatchOrder={handleDispatchOrder}
+                            />
+                        )}
 
-                    {activeTab === 'requests' && (
-                        <RequestsDispatchTab
-                            requests={safeRequests}
-                            units={safeUnits}
-                            onOpenCreateRequestModal={() =>
-                                setIsRequestOpen(true)
-                            }
-                            onCrossMatchUnits={handleCrossMatchUnits}
-                            onDispatchOrder={handleDispatchOrder}
-                        />
-                    )}
+                        {activeTab === 'compatibility' && (
+                            <CompatibilityEngineTab
+                                inventoryUnits={safeUnits}
+                            />
+                        )}
 
-                    {activeTab === 'compatibility' && (
-                        <CompatibilityEngineTab inventoryUnits={safeUnits} />
-                    )}
+                        {activeTab === 'drives' && (
+                            <DonationDrivesTab
+                                drives={safeDrives}
+                                onOpenScheduleDriveModal={() =>
+                                    setIsDriveOpen(true)
+                                }
+                            />
+                        )}
 
-                    {activeTab === 'drives' && (
-                        <DonationDrivesTab
-                            drives={safeDrives}
-                            onOpenScheduleDriveModal={() =>
-                                setIsDriveOpen(true)
-                            }
-                        />
-                    )}
+                        {activeTab === 'storage' && (
+                            <StorageFacilitiesTab
+                                facilities={facilities}
+                                equipment={equipment}
+                            />
+                        )}
 
-                    {activeTab === 'storage' && (
-                        <StorageFacilitiesTab
-                            facilities={facilities}
-                            equipment={equipment}
-                        />
-                    )}
+                        {activeTab === 'ai' && (
+                            <AiForecastTab aiData={aiData} />
+                        )}
 
-                    {activeTab === 'ai' && <AiForecastTab aiData={aiData} />}
+                        {activeTab === 'compliance' && (
+                            <AuditComplianceTab
+                                auditLogs={auditLogs}
+                                discardLogs={discardLogs}
+                            />
+                        )}
+                    </main>
 
-                    {activeTab === 'compliance' && (
-                        <AuditComplianceTab
-                            auditLogs={auditLogs}
-                            discardLogs={discardLogs}
-                        />
-                    )}
-                </main>
-
-                <BbimsModals
-                    isIntakeOpen={isIntakeOpen}
-                    onCloseIntake={() => setIsIntakeOpen(false)}
-                    onAddUnit={handleAddUnit}
-                    isRequestOpen={isRequestOpen}
-                    onCloseRequest={() => setIsRequestOpen(false)}
-                    onAddRequest={handleAddRequest}
-                    isDonorOpen={isDonorOpen}
-                    onCloseDonor={() => setIsDonorOpen(false)}
-                    onAddDonor={handleAddDonor}
-                    isDriveOpen={isDriveOpen}
-                    onCloseDrive={() => setIsDriveOpen(false)}
-                    onAddDrive={handleAddDrive}
-                    facilities={facilities}
-                    donors={safeDonors}
-                />
+                    <BbimsModals
+                        isIntakeOpen={isIntakeOpen}
+                        onCloseIntake={() => setIsIntakeOpen(false)}
+                        onAddUnit={handleAddUnit}
+                        isRequestOpen={isRequestOpen}
+                        onCloseRequest={() => setIsRequestOpen(false)}
+                        onAddRequest={handleAddRequest}
+                        isDonorOpen={isDonorOpen}
+                        onCloseDonor={() => setIsDonorOpen(false)}
+                        onAddDonor={handleAddDonor}
+                        isDriveOpen={isDriveOpen}
+                        onCloseDrive={() => setIsDriveOpen(false)}
+                        onAddDrive={handleAddDrive}
+                        facilities={facilities}
+                        donors={safeDonors}
+                    />
+                </div>
             </div>
         </ErrorBoundary>
     );

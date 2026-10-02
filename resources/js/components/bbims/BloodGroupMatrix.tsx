@@ -1,6 +1,6 @@
 import React from 'react';
 import { BloodUnit, BloodType } from './types';
-import { Flame, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Flame } from 'lucide-react';
 
 interface BloodMatrixProps {
     units: BloodUnit[];

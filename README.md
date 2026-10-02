@@ -29,10 +29,12 @@
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
+
 - Node.js (v18+)
 - PHP 8.3+ & Composer
 
 ### 2. Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/Talhay2k/BBIMS.git
@@ -46,12 +48,14 @@ composer install
 ```
 
 ### 3. Environment Setup
+
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
 ### 4. Running Locally
+
 ```bash
 # Start Node.js NestJS Backend Server (Port 5000)
 npm run server
@@ -65,4 +69,5 @@ Open `http://localhost:8000` or `http://localhost:5173` to view the application.
 ---
 
 ## 📄 License
+
 This project is open-source and licensed under the [MIT License](LICENSE).
