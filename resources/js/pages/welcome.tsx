@@ -93,6 +93,7 @@ export default function Welcome() {
     const [selectedFacilityId, setSelectedFacilityId] = useState('All');
     const [matrixBloodType, setMatrixBloodType] = useState('All');
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
     // Data States (initialized with rich fallback data so screen NEVER blackouts)
     const [units, setUnits] = useState<BloodUnit[]>(initialUnits);
@@ -398,12 +399,14 @@ export default function Welcome() {
                 <Head title="Blood Bank Inventory Management System (BBIMS)" />
                 <Toaster position="top-right" theme="dark" richColors />
 
-                {/* Left Collapsible Sidebar */}
+                {/* Left Collapsible & Mobile Overlay Sidebar */}
                 <BbimsSidebar
                     activeTab={activeTab}
                     setActiveTab={setActiveTab}
                     isCollapsed={isSidebarCollapsed}
                     setIsCollapsed={setIsSidebarCollapsed}
+                    isMobileOpen={isMobileSidebarOpen}
+                    setIsMobileOpen={setIsMobileSidebarOpen}
                     facilities={facilities}
                     selectedFacilityId={selectedFacilityId}
                     setSelectedFacilityId={setSelectedFacilityId}
@@ -427,6 +430,9 @@ export default function Welcome() {
                         onOpenDonorModal={() => setIsDonorOpen(true)}
                         expiringAlertsCount={expiringCount}
                         pendingRequestsCount={pendingRequestsCount}
+                        onToggleMobileSidebar={() =>
+                            setIsMobileSidebarOpen((prev) => !prev)
+                        }
                     />
 
                     <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-6 sm:px-6 lg:px-8">

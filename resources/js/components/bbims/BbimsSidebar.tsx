@@ -18,6 +18,7 @@ import {
     UserPlus,
     Thermometer,
     CheckCircle2,
+    X,
 } from 'lucide-react';
 import { Facility } from './types';
 
@@ -26,6 +27,8 @@ interface SidebarProps {
     setActiveTab: (tab: string) => void;
     isCollapsed: boolean;
     setIsCollapsed: (collapsed: boolean | ((prev: boolean) => boolean)) => void;
+    isMobileOpen?: boolean;
+    setIsMobileOpen?: (open: boolean) => void;
     facilities: Facility[];
     selectedFacilityId: string;
     setSelectedFacilityId: (id: string) => void;
@@ -41,6 +44,8 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
     setActiveTab,
     isCollapsed,
     setIsCollapsed,
+    isMobileOpen = false,
+    setIsMobileOpen,
     facilities,
     selectedFacilityId,
     setSelectedFacilityId,
@@ -98,12 +103,15 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
         },
     ];
 
-    return (
-        <aside
-            className={`sticky top-0 z-40 flex h-screen flex-col justify-between border-r border-slate-800/80 bg-[#0b0f19] text-white shadow-2xl transition-all duration-300 ${
-                isCollapsed ? 'w-20' : 'w-64'
-            }`}
-        >
+    const handleNavClick = (id: string) => {
+        setActiveTab(id);
+        if (setIsMobileOpen) {
+            setIsMobileOpen(false);
+        }
+    };
+
+    const sidebarContent = (isMobile: boolean = false) => (
+        <div className="flex h-full flex-col justify-between">
             {/* Top Branding & Toggle Button */}
             <div>
                 <div className="flex items-center justify-between border-b border-slate-800/80 p-4">
@@ -111,7 +119,7 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-600 via-red-600 to-rose-500 shadow-lg shadow-rose-900/40">
                             <Droplet className="h-5 w-5 text-white" />
                         </div>
-                        {!isCollapsed && (
+                        {(!isCollapsed || isMobile) && (
                             <div className="truncate">
                                 <h1 className="text-base leading-tight font-black tracking-tight text-white">
                                     BBIMS Portal
@@ -123,24 +131,38 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                         )}
                     </div>
 
-                    {/* Sidebar Collapse Toggle Button */}
-                    <button
-                        onClick={() => setIsCollapsed((prev) => !prev)}
-                        className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-400 shadow-sm transition hover:bg-slate-800 hover:text-white"
-                        title={
-                            isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'
-                        }
-                    >
-                        {isCollapsed ? (
-                            <ChevronRight className="h-4 w-4" />
-                        ) : (
-                            <ChevronLeft className="h-4 w-4" />
-                        )}
-                    </button>
+                    {/* Desktop Collapse Toggle Button */}
+                    {!isMobile ? (
+                        <button
+                            onClick={() => setIsCollapsed((prev) => !prev)}
+                            className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-400 shadow-sm transition hover:bg-slate-800 hover:text-white"
+                            title={
+                                isCollapsed
+                                    ? 'Expand Sidebar'
+                                    : 'Collapse Sidebar'
+                            }
+                        >
+                            {isCollapsed ? (
+                                <ChevronRight className="h-4 w-4" />
+                            ) : (
+                                <ChevronLeft className="h-4 w-4" />
+                            )}
+                        </button>
+                    ) : (
+                        /* Mobile Close Button */
+                        <button
+                            onClick={() =>
+                                setIsMobileOpen && setIsMobileOpen(false)
+                            }
+                            className="rounded-lg border border-slate-800 bg-slate-900 p-1.5 text-slate-400 hover:text-white"
+                        >
+                            <X className="h-4 w-4" />
+                        </button>
+                    )}
                 </div>
 
-                {/* Facility Selector (When Expanded) */}
-                {!isCollapsed && (
+                {/* Facility Selector */}
+                {(!isCollapsed || isMobile) && (
                     <div className="mx-3 mt-3 rounded-xl border border-slate-800 bg-slate-900/80 p-3">
                         <label className="mb-1 block text-[10px] font-bold tracking-wider text-slate-400 uppercase">
                             Active Facility
@@ -178,7 +200,7 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                 <nav className="no-scrollbar max-h-[calc(100vh-280px)] space-y-4 overflow-y-auto p-3">
                     {navSections.map((section, idx) => (
                         <div key={idx} className="space-y-1">
-                            {!isCollapsed && (
+                            {(!isCollapsed || isMobile) && (
                                 <h2 className="px-3 text-[10px] font-bold tracking-wider text-slate-500 uppercase">
                                     {section.title}
                                 </h2>
@@ -191,10 +213,10 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                                         <button
                                             key={item.id}
                                             onClick={() =>
-                                                setActiveTab(item.id)
+                                                handleNavClick(item.id)
                                             }
                                             title={
-                                                isCollapsed
+                                                isCollapsed && !isMobile
                                                     ? item.label
                                                     : undefined
                                             }
@@ -202,22 +224,21 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                                                 isActive
                                                     ? 'bg-rose-600 text-white shadow-lg shadow-rose-900/30'
                                                     : 'text-slate-400 hover:bg-slate-900/80 hover:text-slate-200'
-                                            } ${isCollapsed ? 'justify-center' : ''}`}
+                                            } ${isCollapsed && !isMobile ? 'justify-center' : ''}`}
                                         >
                                             <Icon
                                                 className={`h-4 w-4 shrink-0 ${isActive ? 'text-white' : 'text-slate-400'}`}
                                             />
-                                            {!isCollapsed && (
+                                            {(!isCollapsed || isMobile) && (
                                                 <span className="truncate">
                                                     {item.label}
                                                 </span>
                                             )}
 
-                                            {/* Badge */}
                                             {item.badge && item.badge > 0 ? (
                                                 <span
                                                     className={`py-0.2 rounded-full bg-rose-500 px-1.5 text-[10px] font-black text-white ${
-                                                        isCollapsed
+                                                        isCollapsed && !isMobile
                                                             ? 'absolute top-1 right-1'
                                                             : 'ml-auto'
                                                     }`}
@@ -234,14 +255,16 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                 </nav>
             </div>
 
-            {/* Bottom Actions & Telemetry Footer */}
+            {/* Bottom Actions Footer */}
             <div className="space-y-2 border-t border-slate-800/80 p-3">
-                {!isCollapsed ? (
+                {!isCollapsed || isMobile ? (
                     <>
-                        {/* Action Triggers */}
                         <div className="grid grid-cols-3 gap-1.5">
                             <button
-                                onClick={onOpenIntakeModal}
+                                onClick={() => {
+                                    onOpenIntakeModal();
+                                    if (setIsMobileOpen) setIsMobileOpen(false);
+                                }}
                                 className="flex flex-col items-center justify-center rounded-xl bg-rose-600 p-2 text-[10px] font-bold text-white shadow transition hover:bg-rose-500"
                                 title="Intake Blood Unit"
                             >
@@ -249,7 +272,10 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                                 Intake
                             </button>
                             <button
-                                onClick={onOpenRequestModal}
+                                onClick={() => {
+                                    onOpenRequestModal();
+                                    if (setIsMobileOpen) setIsMobileOpen(false);
+                                }}
                                 className="flex flex-col items-center justify-center rounded-xl border border-rose-500/30 bg-slate-900 p-2 text-[10px] font-bold text-rose-300 transition hover:bg-slate-800"
                                 title="New Hospital Request"
                             >
@@ -257,16 +283,18 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                                 Request
                             </button>
                             <button
-                                onClick={onOpenDonorModal}
+                                onClick={() => {
+                                    onOpenDonorModal();
+                                    if (setIsMobileOpen) setIsMobileOpen(false);
+                                }}
                                 className="flex flex-col items-center justify-center rounded-xl border border-slate-800 bg-slate-900 p-2 text-[10px] font-bold text-blue-300 transition hover:bg-slate-800"
                                 title="Register New Donor"
                             >
-                                <UserPlus className="mb-0.5 h-4 w-4" />
+                                <UserPlus className="mb-0.5 h-4 w-4 text-blue-400" />
                                 Donor
                             </button>
                         </div>
 
-                        {/* Cold Chain Status */}
                         <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900/90 px-3 py-2 text-[11px]">
                             <span className="flex items-center gap-1.5 font-medium text-slate-400">
                                 <Thermometer className="h-3.5 w-3.5 text-emerald-400" />
@@ -296,6 +324,37 @@ export const BbimsSidebar: React.FC<SidebarProps> = ({
                     </div>
                 )}
             </div>
-        </aside>
+        </div>
+    );
+
+    return (
+        <>
+            {/* Desktop Sticky Sidebar */}
+            <aside
+                className={`sticky top-0 z-40 hidden h-screen flex-col justify-between border-r border-slate-800/80 bg-[#0b0f19] text-white shadow-2xl transition-all duration-300 lg:flex ${
+                    isCollapsed ? 'w-20' : 'w-64'
+                }`}
+            >
+                {sidebarContent(false)}
+            </aside>
+
+            {/* Mobile Drawer Overlay & Backdrop */}
+            {isMobileOpen && (
+                <div className="fixed inset-0 z-50 lg:hidden">
+                    {/* Backdrop */}
+                    <div
+                        onClick={() =>
+                            setIsMobileOpen && setIsMobileOpen(false)
+                        }
+                        className="fixed inset-0 bg-black/70 backdrop-blur-sm transition-opacity"
+                    />
+
+                    {/* Sliding Drawer */}
+                    <aside className="fixed inset-y-0 left-0 z-50 w-72 animate-in border-r border-slate-800 bg-[#0b0f19] text-white shadow-2xl duration-300 slide-in-from-left">
+                        {sidebarContent(true)}
+                    </aside>
+                </div>
+            )}
+        </>
     );
 };

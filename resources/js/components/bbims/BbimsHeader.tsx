@@ -13,6 +13,7 @@ import {
     GitCompare,
     TrendingUp,
     ShieldCheck,
+    Menu,
 } from 'lucide-react';
 import { Facility } from './types';
 
@@ -27,6 +28,7 @@ interface HeaderProps {
     onOpenDonorModal: () => void;
     expiringAlertsCount: number;
     pendingRequestsCount: number;
+    onToggleMobileSidebar?: () => void;
 }
 
 export const BbimsHeader: React.FC<HeaderProps> = ({
@@ -40,6 +42,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
     onOpenDonorModal,
     expiringAlertsCount,
     pendingRequestsCount,
+    onToggleMobileSidebar,
 }) => {
     const navItems = [
         { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
@@ -59,11 +62,22 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
     const totalAlerts = expiringAlertsCount + pendingRequestsCount;
 
     return (
-        <header className="sticky top-0 z-40 border-b border-slate-800/80 bg-[#0b0f19]/95 text-white shadow-2xl backdrop-blur-md">
+        <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-[#0b0f19]/95 text-white shadow-2xl backdrop-blur-md">
             {/* Top Bar */}
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
                 {/* Logo & Brand */}
                 <div className="flex items-center gap-3">
+                    {/* Mobile Menu Toggler */}
+                    {onToggleMobileSidebar && (
+                        <button
+                            onClick={onToggleMobileSidebar}
+                            className="rounded-xl border border-slate-800 bg-slate-900 p-2 text-slate-300 hover:bg-slate-800 hover:text-white lg:hidden"
+                            title="Toggle Navigation Menu"
+                        >
+                            <Menu className="h-5 w-5" />
+                        </button>
+                    )}
+
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-600 via-red-600 to-rose-500 shadow-lg shadow-rose-900/40">
                         <Droplet className="h-5 w-5 text-white" />
                     </div>
@@ -103,7 +117,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                             onChange={(e) =>
                                 setSelectedFacilityId(e.target.value)
                             }
-                            className="cursor-pointer bg-transparent pr-1 text-xs font-semibold text-slate-200 focus:outline-none"
+                            className="cursor-pointer truncate bg-transparent pr-1 text-xs font-semibold text-slate-200 focus:outline-none"
                         >
                             <option
                                 value="All"
