@@ -81,4 +81,7 @@ export default defineConfig({
             stylesheet: 'resources/css/app.css',
         },
     },
+    build: {
+        chunkSizeWarningLimit: 1500,
+    },
 });

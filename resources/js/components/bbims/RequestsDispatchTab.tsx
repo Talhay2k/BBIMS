@@ -69,24 +69,24 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
             case 'Urgent':
                 return 'bg-amber-500/20 text-amber-300 border-amber-500/30 font-bold';
             default:
-                return 'bg-slate-800 text-slate-300 font-medium';
+                return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 font-medium';
         }
     };
 
     const getStatusBadge = (status: string) => {
         switch (status) {
             case 'Pending':
-                return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+                return 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20';
             case 'Cross-Matched':
-                return 'bg-purple-500/10 text-purple-400 border-purple-500/20';
+                return 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20';
             case 'Approved':
-                return 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+                return 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20';
             case 'Dispatched':
-                return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20';
+                return 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20';
             case 'Completed':
-                return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+                return 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20';
             default:
-                return 'bg-slate-800 text-slate-400';
+                return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400';
         }
     };
 
@@ -108,7 +108,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
     return (
         <div className="space-y-4">
             {/* Control Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-lg">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-4 shadow-sm dark:shadow-lg transition-colors">
                 <div className="relative min-w-[240px] flex-1">
                     <Search className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
@@ -116,7 +116,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                         placeholder="Search hospital, request ID, patient name..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full rounded-xl border border-slate-800 bg-slate-950 py-2 pr-4 pl-10 text-xs text-slate-200 placeholder-slate-500 focus:border-rose-500/50 focus:outline-none"
+                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 py-2 pr-4 pl-10 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-rose-500/50 focus:outline-none"
                     />
                 </div>
 
@@ -124,7 +124,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                     <select
                         value={selectedUrgency}
                         onChange={(e) => setSelectedUrgency(e.target.value)}
-                        className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-rose-500/50 focus:outline-none"
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-rose-500/50 focus:outline-none"
                     >
                         <option value="All">All Urgency Levels</option>
                         <option value="Emergency (Stat)">
@@ -137,7 +137,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                     <select
                         value={selectedStatus}
                         onChange={(e) => setSelectedStatus(e.target.value)}
-                        className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-rose-500/50 focus:outline-none"
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-rose-500/50 focus:outline-none"
                     >
                         <option value="All">All Statuses</option>
                         <option value="Pending">Pending</option>
@@ -164,14 +164,14 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                     return (
                         <div
                             key={req.id}
-                            className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg"
+                            className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-5 shadow-sm dark:shadow-lg transition-colors"
                         >
                             <div>
                                 {/* Header */}
                                 <div className="mb-3 flex items-start justify-between gap-3">
                                     <div>
                                         <div className="flex items-center gap-2">
-                                            <span className="font-mono text-xs font-bold text-rose-400">
+                                            <span className="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">
                                                 {req.requestCode}
                                             </span>
                                             <span
@@ -182,7 +182,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                                 {req.urgency}
                                             </span>
                                         </div>
-                                        <h3 className="mt-1 text-base font-bold text-white">
+                                        <h3 className="mt-1 text-base font-bold text-slate-900 dark:text-white">
                                             {req.hospitalName}
                                         </h3>
                                     </div>
@@ -196,28 +196,28 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                 </div>
 
                                 {/* Patient & Required Info */}
-                                <div className="mb-3 space-y-1.5 rounded-xl border border-slate-800/80 bg-slate-950/70 p-3 text-xs">
-                                    <div className="flex items-center justify-between text-slate-300">
+                                <div className="mb-3 space-y-1.5 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-950/70 p-3 text-xs">
+                                    <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
                                         <span>Patient Name:</span>
-                                        <strong className="text-white">
+                                        <strong className="text-slate-900 dark:text-white">
                                             {req.patientName} ({req.patientAge}
                                             y, {req.patientGender})
                                         </strong>
                                     </div>
-                                    <div className="flex items-center justify-between text-slate-300">
+                                    <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
                                         <span>Required Group & Component:</span>
                                         <div className="flex items-center gap-1.5">
-                                            <span className="rounded border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 font-mono font-black text-rose-400">
+                                            <span className="rounded border border-rose-500/30 bg-rose-500/10 px-2 py-0.5 font-mono font-black text-rose-600 dark:text-rose-400">
                                                 {req.requiredBloodType}
                                             </span>
-                                            <span className="font-semibold text-slate-200">
+                                            <span className="font-semibold text-slate-800 dark:text-slate-200">
                                                 {req.component}
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="flex items-center justify-between text-slate-300">
+                                    <div className="flex items-center justify-between text-slate-600 dark:text-slate-300">
                                         <span>Units Requested:</span>
-                                        <strong className="text-slate-100">
+                                        <strong className="text-slate-900 dark:text-slate-100">
                                             {req.unitsRequested} unit(s)
                                         </strong>
                                     </div>
@@ -225,20 +225,20 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
 
                                 {/* Assigned Units info */}
                                 {assignedUnits.length > 0 && (
-                                    <div className="mb-3 rounded-xl border border-purple-800/40 bg-purple-950/30 p-2.5 text-xs">
-                                        <span className="mb-1 block font-bold text-purple-300">
+                                    <div className="mb-3 rounded-xl border border-purple-200 dark:border-purple-800/40 bg-purple-50 dark:bg-purple-950/30 p-2.5 text-xs">
+                                        <span className="mb-1 block font-bold text-purple-700 dark:text-purple-300">
                                             Cross-Matched Units Assigned:
                                         </span>
                                         {assignedUnits.map((u) => (
                                             <div
                                                 key={u.id}
-                                                className="flex items-center justify-between font-mono text-[11px] text-slate-300"
+                                                className="flex items-center justify-between font-mono text-[11px] text-slate-700 dark:text-slate-300"
                                             >
                                                 <span>
                                                     {u.unitNumber} (
                                                     {u.bloodType})
                                                 </span>
-                                                <span className="font-sans font-semibold text-emerald-400">
+                                                <span className="font-sans font-semibold text-emerald-600 dark:text-emerald-400">
                                                     Passed Compatibility Check
                                                 </span>
                                             </div>
@@ -248,7 +248,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                             </div>
 
                             {/* Actions & Dispatch details */}
-                            <div className="flex items-center justify-between gap-2 border-t border-slate-800/80 pt-3">
+                            <div className="flex items-center justify-between gap-2 border-t border-slate-200 dark:border-slate-800/80 pt-3">
                                 <span className="font-mono text-[11px] text-slate-500">
                                     Req: {req.requestDate}
                                 </span>
@@ -277,8 +277,8 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                     )}
 
                                     {req.status === 'Dispatched' && (
-                                        <span className="flex items-center gap-1 text-xs font-medium text-cyan-400">
-                                            <ShieldCheck className="h-4 w-4 text-emerald-400" />
+                                        <span className="flex items-center gap-1 text-xs font-medium text-cyan-600 dark:text-cyan-400">
+                                            <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                                             Dispatched (
                                             {req.dispatchTemperatureC}°C)
                                         </span>
@@ -293,25 +293,25 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
             {/* Cross-Match Modal */}
             {crossMatchReq && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
-                                <GitCompare className="h-5 w-5 text-purple-400" />
+                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                                <GitCompare className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                                 Electronic Cross-Match Unit Assignment
                             </h3>
                             <button
                                 onClick={() => setCrossMatchReq(null)}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
                         </div>
 
-                        <div className="space-y-1 rounded-xl border border-slate-800 bg-slate-950 p-3 text-xs">
-                            <p className="font-bold text-slate-200">
+                        <div className="space-y-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-3 text-xs">
+                            <p className="font-bold text-slate-800 dark:text-slate-200">
                                 {crossMatchReq.hospitalName}
                             </p>
-                            <p className="text-slate-400">
+                            <p className="text-slate-500 dark:text-slate-400">
                                 Patient: {crossMatchReq.patientName} • Required
                                 Type: {crossMatchReq.requiredBloodType} (
                                 {crossMatchReq.component})
@@ -323,7 +323,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                             className="space-y-3 text-xs"
                         >
                             <div>
-                                <label className="mb-1 block text-slate-400">
+                                <label className="mb-1 block text-slate-600 dark:text-slate-400">
                                     Select Available Inventory Unit to
                                     Cross-Match:
                                 </label>
@@ -332,7 +332,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                     onChange={(e) =>
                                         setSelectedUnitId(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-slate-800 dark:text-slate-200"
                                 >
                                     <option value="">-- Choose Unit --</option>
                                     {units
@@ -351,7 +351,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => setCrossMatchReq(null)}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 dark:bg-slate-800 px-4 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>
@@ -371,15 +371,15 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
             {/* Cold Chain Dispatch Modal */}
             {dispatchReq && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
-                                <Truck className="h-5 w-5 text-cyan-400" />
+                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-2xl">
+                        <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                                <Truck className="h-5 w-5 text-cyan-600 dark:text-cyan-400" />
                                 Initiate Cold-Chain Dispatch
                             </h3>
                             <button
                                 onClick={() => setDispatchReq(null)}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
@@ -390,7 +390,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                             className="space-y-3 text-xs"
                         >
                             <div>
-                                <label className="mb-1 block text-slate-400">
+                                <label className="mb-1 block text-slate-600 dark:text-slate-400">
                                     Courier Tracking Code
                                 </label>
                                 <input
@@ -399,12 +399,12 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                     onChange={(e) =>
                                         setCourierCode(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-slate-800 dark:text-slate-200"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-1 block text-slate-400">
+                                <label className="mb-1 block text-slate-600 dark:text-slate-400">
                                     Verified Transport Container Temp (°C)
                                 </label>
                                 <input
@@ -414,7 +414,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                     onChange={(e) =>
                                         setDispatchTemp(Number(e.target.value))
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-slate-800 dark:text-slate-200"
                                 />
                             </div>
 
@@ -422,7 +422,7 @@ export const RequestsDispatchTab: React.FC<RequestsTabProps> = ({
                                 <button
                                     type="button"
                                     onClick={() => setDispatchReq(null)}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 dark:bg-slate-800 px-4 py-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>

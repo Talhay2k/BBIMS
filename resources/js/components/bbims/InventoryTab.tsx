@@ -93,9 +93,9 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
             case 'Expired':
                 return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
             case 'Discarded':
-                return 'bg-slate-700 text-slate-400 border-slate-600';
+                return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700';
             default:
-                return 'bg-slate-800 text-slate-300';
+                return 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300';
         }
     };
 
@@ -137,7 +137,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
     return (
         <div className="space-y-4">
             {/* Control & Search Bar */}
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-lg">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-4 shadow-sm dark:shadow-lg transition-colors">
                 {/* Search */}
                 <div className="relative min-w-[240px] flex-1">
                     <Search className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-slate-400" />
@@ -146,7 +146,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                         placeholder="Search unit barcode ID, location, facility..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full rounded-xl border border-slate-800 bg-slate-950 py-2 pr-4 pl-10 text-xs text-slate-200 placeholder-slate-500 focus:border-rose-500/50 focus:outline-none"
+                        className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 py-2 pr-4 pl-10 text-xs text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 focus:border-rose-500/50 focus:outline-none"
                     />
                 </div>
 
@@ -156,7 +156,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                     <select
                         value={selectedType}
                         onChange={(e) => setSelectedType(e.target.value)}
-                        className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-rose-500/50 focus:outline-none"
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-rose-500/50 focus:outline-none"
                     >
                         <option value="All">All Blood Types</option>
                         {bloodTypes.map((t) => (
@@ -170,7 +170,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                     <select
                         value={selectedComponent}
                         onChange={(e) => setSelectedComponent(e.target.value)}
-                        className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-rose-500/50 focus:outline-none"
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-rose-500/50 focus:outline-none"
                     >
                         <option value="All">All Components</option>
                         {components.map((c) => (
@@ -184,7 +184,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                     <select
                         value={selectedStatus}
                         onChange={(e) => setSelectedStatus(e.target.value)}
-                        className="rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-200 focus:border-rose-500/50 focus:outline-none"
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-rose-500/50 focus:outline-none"
                     >
                         <option value="All">All Statuses</option>
                         {statuses.map((s) => (
@@ -205,11 +205,11 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
             </div>
 
             {/* Inventory Table */}
-            <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
+            <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 shadow-md dark:shadow-xl transition-colors">
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
                         <thead>
-                            <tr className="border-b border-slate-800 bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
+                            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-600 dark:text-slate-400 uppercase">
                                 <th className="px-4 py-3.5">Unit Barcode ID</th>
                                 <th className="px-4 py-3.5">Blood Group</th>
                                 <th className="px-4 py-3.5">Component & Vol</th>
@@ -226,7 +226,7 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-800/60 text-xs">
+                        <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-xs">
                             {filteredUnits.length === 0 ? (
                                 <tr>
                                     <td
@@ -241,9 +241,9 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                                 filteredUnits.map((unit) => (
                                     <tr
                                         key={unit.id}
-                                        className="transition hover:bg-slate-800/40"
+                                        className="transition hover:bg-slate-50 dark:hover:bg-slate-800/40"
                                     >
-                                        <td className="px-4 py-3.5 font-mono font-bold text-slate-200">
+                                        <td className="px-4 py-3.5 font-mono font-bold text-slate-800 dark:text-slate-200">
                                             <div className="flex items-center gap-2">
                                                 <span className="h-2 w-2 rounded-full bg-rose-500"></span>
                                                 {unit.unitNumber}
@@ -255,29 +255,29 @@ export const InventoryTab: React.FC<InventoryTabProps> = ({
                                             )}
                                         </td>
                                         <td className="px-4 py-3.5">
-                                            <span className="inline-flex items-center justify-center rounded-lg border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 font-mono text-xs font-black text-rose-400">
+                                            <span className="inline-flex items-center justify-center rounded-lg border border-rose-500/30 bg-rose-500/10 px-2.5 py-1 font-mono text-xs font-black text-rose-600 dark:text-rose-400">
                                                 {unit.bloodType}
                                             </span>
                                         </td>
-                                        <td className="px-4 py-3.5 text-slate-300">
-                                            <div className="font-semibold text-slate-200">
+                                        <td className="px-4 py-3.5 text-slate-700 dark:text-slate-300">
+                                            <div className="font-semibold text-slate-800 dark:text-slate-200">
                                                 {unit.component}
                                             </div>
-                                            <div className="text-[11px] text-slate-400">
+                                            <div className="text-[11px] text-slate-500 dark:text-slate-400">
                                                 {unit.volumeMl} mL
                                             </div>
                                         </td>
-                                        <td className="px-4 py-3.5 text-slate-300">
-                                            <div className="flex items-center gap-1 font-medium text-slate-200">
+                                        <td className="px-4 py-3.5 text-slate-700 dark:text-slate-300">
+                                            <div className="flex items-center gap-1 font-medium text-slate-800 dark:text-slate-200">
                                                 <Building2 className="h-3.5 w-3.5 text-slate-400" />
                                                 {unit.facilityName}
                                             </div>
-                                            <div className="flex items-center gap-1 text-[11px] text-slate-400">
+                                            <div className="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400">
                                                 <MapPin className="h-3 w-3 text-slate-500" />
                                                 {unit.location}
                                             </div>
                                         </td>
-                                        <td className="px-4 py-3.5 font-mono text-[11px] text-slate-400">
+                                        <td className="px-4 py-3.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
                                             {unit.collectionDate}
                                         </td>
                                         <td className="px-4 py-3.5">

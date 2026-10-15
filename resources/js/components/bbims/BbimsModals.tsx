@@ -151,16 +151,16 @@ export const BbimsModals: React.FC<ModalsProps> = ({
         <>
             {/* Intake Unit Modal */}
             {isIntakeOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
                                 <Droplet className="h-5 w-5 text-rose-500" />
                                 Register New Blood Unit Intake
                             </h3>
                             <button
                                 onClick={onCloseIntake}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
@@ -172,7 +172,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                         >
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Blood Group
                                     </label>
                                     <select
@@ -182,7 +182,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as BloodType,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         {[
                                             'A+',
@@ -202,7 +202,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Component
                                     </label>
                                     <select
@@ -212,7 +212,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as ComponentType,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         <option value="Packed Red Blood Cells">
                                             Packed Red Blood Cells
@@ -234,7 +234,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Target Storage Facility
                                 </label>
                                 <select
@@ -242,7 +242,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setIntakeFacilityId(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 >
                                     {facilities.map((f) => (
                                         <option key={f.id} value={f.id}>
@@ -253,7 +253,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Storage Vault Location
                                 </label>
                                 <input
@@ -262,13 +262,13 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setIntakeLocation(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div className="grid grid-cols-2 gap-3">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Volume (mL)
                                     </label>
                                     <input
@@ -279,12 +279,12 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 Number(e.target.value),
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Donor Code Reference
                                     </label>
                                     <input
@@ -293,7 +293,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setIntakeDonorCode(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-mono text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                             </div>
@@ -302,7 +302,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 <button
                                     type="button"
                                     onClick={onCloseIntake}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 px-4 py-2 font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>
@@ -320,16 +320,16 @@ export const BbimsModals: React.FC<ModalsProps> = ({
 
             {/* New Request Modal */}
             {isRequestOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
-                                <FilePlus className="h-5 w-5 text-rose-400" />
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                                <FilePlus className="h-5 w-5 text-rose-500 dark:text-rose-400" />
                                 Create Hospital Transfusion Request
                             </h3>
                             <button
                                 onClick={onCloseRequest}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
@@ -340,7 +340,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                             className="space-y-3 text-xs"
                         >
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Hospital / Ward Name
                                 </label>
                                 <input
@@ -349,13 +349,13 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setReqHospital(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div className="grid grid-cols-3 gap-2">
                                 <div className="col-span-2">
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Patient Name
                                     </label>
                                     <input
@@ -364,11 +364,11 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setReqPatientName(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Age
                                     </label>
                                     <input
@@ -379,14 +379,14 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 Number(e.target.value),
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-3 gap-2">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Required Group
                                     </label>
                                     <select
@@ -396,7 +396,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as BloodType,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono font-bold text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-mono font-bold text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         {[
                                             'A+',
@@ -416,7 +416,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Component
                                     </label>
                                     <select
@@ -426,7 +426,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as ComponentType,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         <option value="Packed Red Blood Cells">
                                             Packed Red Blood Cells
@@ -444,7 +444,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 </div>
 
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Units Needed
                                     </label>
                                     <input
@@ -453,13 +453,13 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setReqUnits(Number(e.target.value))
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Urgency Classification
                                 </label>
                                 <select
@@ -467,7 +467,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setReqUrgency(e.target.value as any)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-bold text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-bold text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 >
                                     <option value="Emergency (Stat)">
                                         Emergency (Stat Protocol)
@@ -485,7 +485,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 <button
                                     type="button"
                                     onClick={onCloseRequest}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 px-4 py-2 font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>
@@ -503,16 +503,16 @@ export const BbimsModals: React.FC<ModalsProps> = ({
 
             {/* Register Donor Modal */}
             {isDonorOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
-                                <UserPlus className="h-5 w-5 text-blue-400" />
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                                <UserPlus className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                                 Register New Donor Profile
                             </h3>
                             <button
                                 onClick={onCloseDonor}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
@@ -523,7 +523,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                             className="space-y-3 text-xs"
                         >
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Full Name
                                 </label>
                                 <input
@@ -532,13 +532,13 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setDonorName(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div className="grid grid-cols-3 gap-2">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Blood Group
                                     </label>
                                     <select
@@ -548,7 +548,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as BloodType,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 font-mono font-bold text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 font-mono font-bold text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         {[
                                             'A+',
@@ -567,7 +567,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Age
                                     </label>
                                     <input
@@ -576,11 +576,11 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setDonorAge(Number(e.target.value))
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Gender
                                     </label>
                                     <select
@@ -590,7 +590,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 e.target.value as any,
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     >
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
@@ -601,7 +601,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
 
                             <div className="grid grid-cols-2 gap-2">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Phone
                                     </label>
                                     <input
@@ -610,11 +610,11 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setDonorPhone(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Email
                                     </label>
                                     <input
@@ -623,14 +623,14 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setDonorEmail(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-3 gap-2">
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Hemoglobin (g/dL)
                                     </label>
                                     <input
@@ -640,11 +640,11 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setDonorHb(Number(e.target.value))
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Blood Pressure
                                     </label>
                                     <input
@@ -653,11 +653,11 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                         onChange={(e) =>
                                             setDonorBP(e.target.value)
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                                 <div>
-                                    <label className="mb-1 block font-semibold text-slate-400">
+                                    <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                         Weight (kg)
                                     </label>
                                     <input
@@ -668,7 +668,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                                 Number(e.target.value),
                                             )
                                         }
-                                        className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                        className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                     />
                                 </div>
                             </div>
@@ -677,7 +677,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 <button
                                     type="button"
                                     onClick={onCloseDonor}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 px-4 py-2 font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>
@@ -695,16 +695,16 @@ export const BbimsModals: React.FC<ModalsProps> = ({
 
             {/* Schedule Drive Modal */}
             {isDriveOpen && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-                            <h3 className="flex items-center gap-2 text-base font-bold text-white">
-                                <Calendar className="h-5 w-5 text-purple-400" />
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
+                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
+                            <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                                <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                                 Schedule Donation Campaign
                             </h3>
                             <button
                                 onClick={onCloseDrive}
-                                className="text-slate-400 hover:text-white"
+                                className="text-slate-400 hover:text-slate-700 dark:hover:text-white"
                             >
                                 &#x2715;
                             </button>
@@ -715,7 +715,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                             className="space-y-3 text-xs"
                         >
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Campaign Title
                                 </label>
                                 <input
@@ -724,12 +724,12 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setDriveName(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Organizer
                                 </label>
                                 <input
@@ -738,12 +738,12 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setDriveOrganizer(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Venue Location
                                 </label>
                                 <input
@@ -752,12 +752,12 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setDriveLocation(e.target.value)
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
                             <div>
-                                <label className="mb-1 block font-semibold text-slate-400">
+                                <label className="mb-1 block font-semibold text-slate-700 dark:text-slate-400">
                                     Target Units Goal
                                 </label>
                                 <input
@@ -766,7 +766,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                     onChange={(e) =>
                                         setDriveTarget(Number(e.target.value))
                                     }
-                                    className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3 py-2 text-slate-200"
+                                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3 py-2 text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                                 />
                             </div>
 
@@ -774,7 +774,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 <button
                                     type="button"
                                     onClick={onCloseDrive}
-                                    className="rounded-xl bg-slate-800 px-4 py-2 text-slate-300"
+                                    className="rounded-xl bg-slate-100 px-4 py-2 font-medium text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
                                 >
                                     Cancel
                                 </button>

@@ -40,6 +40,12 @@ import { AiForecastTab } from '../components/bbims/AiForecastTab';
 import { AuditComplianceTab } from '../components/bbims/AuditComplianceTab';
 import { BbimsModals } from '../components/bbims/BbimsModals';
 
+const LandingPage = React.lazy(() =>
+    import('../components/bbims/LandingPage').then((m) => ({
+        default: m.LandingPage,
+    })),
+);
+
 interface ErrorBoundaryState {
     hasError: boolean;
     error?: Error;
@@ -89,6 +95,7 @@ class ErrorBoundary extends React.Component<
 }
 
 export default function Welcome() {
+    const [viewMode, setViewMode] = useState<'landing' | 'app'>('landing');
     const [activeTab, setActiveTab] = useState('dashboard');
     const [selectedFacilityId, setSelectedFacilityId] = useState('All');
     const [matrixBloodType, setMatrixBloodType] = useState('All');
@@ -393,10 +400,33 @@ export default function Welcome() {
         (r) => r.status === 'Pending',
     ).length;
 
+    if (viewMode === 'landing') {
+        return (
+            <ErrorBoundary>
+                <Head title="BloodMatrix - Enterprise Blood Bank & Logistics Intelligence" />
+                <Toaster position="top-right" theme="dark" richColors />
+                <React.Suspense
+                    fallback={
+                        <div className="flex min-h-screen items-center justify-center bg-slate-950 font-sans text-xs font-semibold text-rose-400">
+                            Loading BloodMatrix Platform...
+                        </div>
+                    }
+                >
+                    <LandingPage
+                        onLaunchApp={() => setViewMode('app')}
+                        units={safeUnits}
+                        donors={safeDonors}
+                        requests={safeRequests}
+                    />
+                </React.Suspense>
+            </ErrorBoundary>
+        );
+    }
+
     return (
         <ErrorBoundary>
-            <div className="flex min-h-screen bg-slate-950 font-sans text-slate-100 selection:bg-rose-500 selection:text-white">
-                <Head title="Blood Bank Inventory Management System (BBIMS)" />
+            <div className="flex min-h-screen bg-slate-100 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 selection:bg-rose-500 selection:text-white transition-colors duration-200">
+                <Head title="BloodMatrix - Command Dashboard" />
                 <Toaster position="top-right" theme="dark" richColors />
 
                 {/* Left Collapsible & Mobile Overlay Sidebar */}
@@ -433,6 +463,7 @@ export default function Welcome() {
                         onToggleMobileSidebar={() =>
                             setIsMobileSidebarOpen((prev) => !prev)
                         }
+                        onSwitchToLanding={() => setViewMode('landing')}
                     />
 
                     <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-6 sm:px-6 lg:px-8">

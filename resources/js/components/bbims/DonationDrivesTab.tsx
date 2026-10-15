@@ -22,13 +22,13 @@ export const DonationDrivesTab: React.FC<DrivesTabProps> = ({
     return (
         <div className="space-y-4">
             {/* Header */}
-            <div className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/90 p-4 shadow-lg">
+            <div className="flex items-center justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-4 shadow-sm dark:shadow-lg transition-colors">
                 <div>
-                    <h2 className="flex items-center gap-2 text-base font-bold text-white">
-                        <Calendar className="h-5 w-5 text-purple-400" />
+                    <h2 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+                        <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />
                         Donation Drive Campaigns & Outreach
                     </h2>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
                         Schedule and track mobile collection campaigns,
                         corporate drives, and target goals.
                     </p>
@@ -55,40 +55,40 @@ export const DonationDrivesTab: React.FC<DrivesTabProps> = ({
                     return (
                         <div
                             key={drive.id}
-                            className="flex flex-col justify-between rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg"
+                            className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-5 shadow-sm dark:shadow-lg transition-colors"
                         >
                             <div>
                                 <div className="mb-2 flex items-start justify-between gap-3">
-                                    <span className="font-mono text-xs font-bold text-purple-400">
+                                    <span className="font-mono text-xs font-bold text-purple-600 dark:text-purple-400">
                                         {drive.driveCode}
                                     </span>
                                     <span
                                         className={`inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold ${
                                             drive.status === 'Active'
-                                                ? 'animate-pulse border-emerald-500/20 bg-emerald-500/10 text-emerald-400'
+                                                ? 'animate-pulse border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
                                                 : drive.status === 'Scheduled'
-                                                  ? 'border-purple-500/20 bg-purple-500/10 text-purple-300'
-                                                  : 'border-slate-700 bg-slate-800 text-slate-400'
+                                                  ? 'border-purple-500/20 bg-purple-500/10 text-purple-700 dark:text-purple-300'
+                                                  : 'border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
                                         }`}
                                     >
                                         {drive.status}
                                     </span>
                                 </div>
 
-                                <h3 className="mb-1 text-base font-bold text-white">
+                                <h3 className="mb-1 text-base font-bold text-slate-900 dark:text-white">
                                     {drive.name}
                                 </h3>
-                                <p className="mb-3 text-xs font-medium text-slate-400">
+                                <p className="mb-3 text-xs font-medium text-slate-500 dark:text-slate-400">
                                     Organizer: {drive.organizer}
                                 </p>
 
-                                <div className="mb-4 space-y-1.5 text-xs text-slate-300">
-                                    <div className="flex items-center gap-2 text-slate-400">
-                                        <MapPin className="h-3.5 w-3.5 text-slate-500" />
+                                <div className="mb-4 space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                        <MapPin className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
                                         <span>{drive.location}</span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-slate-400">
-                                        <Calendar className="h-3.5 w-3.5 text-slate-500" />
+                                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+                                        <Calendar className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500" />
                                         <span>
                                             {drive.startDate} to {drive.endDate}
                                         </span>
@@ -98,16 +98,16 @@ export const DonationDrivesTab: React.FC<DrivesTabProps> = ({
                                 {/* Progress Bar */}
                                 <div className="mb-4 space-y-1.5">
                                     <div className="flex items-center justify-between text-xs">
-                                        <span className="font-medium text-slate-400">
+                                        <span className="font-medium text-slate-500 dark:text-slate-400">
                                             Collection Progress:
                                         </span>
-                                        <strong className="text-slate-200">
+                                        <strong className="text-slate-800 dark:text-slate-200">
                                             {drive.collectedUnits} /{' '}
                                             {drive.targetUnits} units (
                                             {percentage}%)
                                         </strong>
                                     </div>
-                                    <div className="h-2.5 w-full overflow-hidden rounded-full border border-slate-800 bg-slate-950">
+                                    <div className="h-2.5 w-full overflow-hidden rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-950">
                                         <div
                                             className="h-full bg-gradient-to-r from-purple-500 to-rose-500 transition-all duration-500"
                                             style={{ width: `${percentage}%` }}
@@ -116,13 +116,13 @@ export const DonationDrivesTab: React.FC<DrivesTabProps> = ({
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-between border-t border-slate-800/80 pt-3 text-xs text-slate-400">
+                            <div className="flex items-center justify-between border-t border-slate-200 dark:border-slate-800/80 pt-3 text-xs text-slate-500 dark:text-slate-400">
                                 <span className="flex items-center gap-1">
-                                    <Users className="h-3.5 w-3.5 text-purple-400" />
+                                    <Users className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
                                     {drive.registeredDonorsCount} Donors
                                     Registered
                                 </span>
-                                <span className="font-semibold text-slate-300">
+                                <span className="font-semibold text-slate-700 dark:text-slate-300">
                                     Goal: {drive.targetUnits} units
                                 </span>
                             </div>

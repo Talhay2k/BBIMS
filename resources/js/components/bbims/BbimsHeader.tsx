@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@inertiajs/react';
 import {
     Droplet,
     Thermometer,
@@ -6,16 +7,14 @@ import {
     Plus,
     Bell,
     CheckCircle2,
-    LayoutDashboard,
-    Layers,
-    Users,
-    Truck,
-    GitCompare,
-    TrendingUp,
-    ShieldCheck,
     Menu,
+    LogIn,
+    UserPlus,
+    Sun,
+    Moon,
 } from 'lucide-react';
 import { Facility } from './types';
+import { useAppearance } from '@/hooks/use-appearance';
 
 interface HeaderProps {
     activeTab: string;
@@ -29,10 +28,11 @@ interface HeaderProps {
     expiringAlertsCount: number;
     pendingRequestsCount: number;
     onToggleMobileSidebar?: () => void;
+    onSwitchToLanding?: () => void;
 }
 
 export const BbimsHeader: React.FC<HeaderProps> = ({
-    activeTab,
+    activeTab: _activeTab,
     setActiveTab,
     facilities,
     selectedFacilityId,
@@ -43,26 +43,17 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
     expiringAlertsCount,
     pendingRequestsCount,
     onToggleMobileSidebar,
+    onSwitchToLanding,
 }) => {
-    const navItems = [
-        { id: 'dashboard', label: 'Overview', icon: LayoutDashboard },
-        { id: 'inventory', label: 'Blood Inventory', icon: Layers },
-        { id: 'donors', label: 'Donor Records', icon: Users },
-        {
-            id: 'requests',
-            label: 'Hospital Orders',
-            icon: Truck,
-            badge: pendingRequestsCount,
-        },
-        { id: 'compatibility', label: 'Cross-Match Engine', icon: GitCompare },
-        { id: 'ai', label: 'AI Demand Forecast', icon: TrendingUp },
-        { id: 'compliance', label: 'Storage & Compliance', icon: ShieldCheck },
-    ];
-
+    const { resolvedAppearance, updateAppearance } = useAppearance();
     const totalAlerts = expiringAlertsCount + pendingRequestsCount;
 
+    const toggleTheme = () => {
+        updateAppearance(resolvedAppearance === 'dark' ? 'light' : 'dark');
+    };
+
     return (
-        <header className="sticky top-0 z-30 border-b border-slate-800/80 bg-[#0b0f19]/95 text-white shadow-2xl backdrop-blur-md">
+        <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800/80 bg-white/95 dark:bg-[#0b0f19]/95 text-slate-900 dark:text-white shadow-md dark:shadow-2xl backdrop-blur-md transition-colors duration-200">
             {/* Top Bar */}
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
                 {/* Logo & Brand */}
@@ -71,7 +62,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     {onToggleMobileSidebar && (
                         <button
                             onClick={onToggleMobileSidebar}
-                            className="rounded-xl border border-slate-800 bg-slate-900 p-2 text-slate-300 hover:bg-slate-800 hover:text-white lg:hidden"
+                            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 lg:hidden"
                             title="Toggle Navigation Menu"
                         >
                             <Menu className="h-5 w-5" />
@@ -83,14 +74,14 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <h1 className="text-lg font-black tracking-tight text-white">
-                                Blood Bank Management
+                            <h1 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">
+                                BloodMatrix
                             </h1>
-                            <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[10px] font-extrabold text-rose-400">
+                            <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[10px] font-extrabold text-rose-600 dark:text-rose-400">
                                 Live System
                             </span>
                         </div>
-                        <p className="text-[11px] text-slate-400">
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
                             Multi-Facility Inventory • Telemetry • AI Expiry
                             Risk
                         </p>
@@ -100,28 +91,28 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                 {/* Facility Selector & Quick Actions */}
                 <div className="flex flex-wrap items-center gap-2.5">
                     {/* Telemetry Status Pill */}
-                    <div className="hidden items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-3 py-1.5 text-xs text-slate-300 lg:flex">
-                        <Thermometer className="h-3.5 w-3.5 text-emerald-400" />
+                    <div className="hidden items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-1.5 text-xs text-slate-700 dark:text-slate-300 lg:flex">
+                        <Thermometer className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" />
                         <span>Vault 3.8°C</span>
-                        <span className="text-slate-600">•</span>
-                        <span className="flex items-center gap-1 font-semibold text-emerald-400">
+                        <span className="text-slate-400 dark:text-slate-600">•</span>
+                        <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
                             <CheckCircle2 className="h-3 w-3" /> Normal
                         </span>
                     </div>
 
                     {/* Facility Switcher */}
-                    <div className="flex items-center gap-2 rounded-xl border border-slate-800 bg-slate-900/90 px-3 py-1.5">
-                        <Building2 className="h-3.5 w-3.5 text-rose-400" />
+                    <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-1.5">
+                        <Building2 className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
                         <select
                             value={selectedFacilityId}
                             onChange={(e) =>
                                 setSelectedFacilityId(e.target.value)
                             }
-                            className="cursor-pointer truncate bg-transparent pr-1 text-xs font-semibold text-slate-200 focus:outline-none"
+                            className="cursor-pointer truncate bg-transparent pr-1 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none"
                         >
                             <option
                                 value="All"
-                                className="bg-slate-900 text-slate-200"
+                                className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200"
                             >
                                 All Facilities (Global)
                             </option>
@@ -129,7 +120,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                                 <option
                                     key={fac.id}
                                     value={fac.id}
-                                    className="bg-slate-900 text-slate-200"
+                                    className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200"
                                 >
                                     {fac.name}
                                 </option>
@@ -146,7 +137,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                                     : 'inventory',
                             )
                         }
-                        className="relative rounded-xl border border-slate-800 bg-slate-900/90 p-2 text-slate-300 transition hover:bg-slate-800"
+                        className="relative rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 p-2 text-slate-700 dark:text-slate-300 transition hover:bg-slate-200 dark:hover:bg-slate-800"
                         title="Alerts"
                     >
                         <Bell className="h-4 w-4" />
@@ -156,6 +147,46 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                             </span>
                         )}
                     </button>
+
+                    {/* Theme Mode Switcher */}
+                    <button
+                        onClick={toggleTheme}
+                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 p-2 text-slate-700 dark:text-slate-300 transition hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"
+                        title={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
+                    >
+                        {resolvedAppearance === 'dark' ? (
+                            <Sun className="h-4 w-4 text-amber-400" />
+                        ) : (
+                            <Moon className="h-4 w-4 text-slate-700" />
+                        )}
+                    </button>
+
+                    {/* Auth Nav & Landing Page Switcher */}
+                    <div className="flex items-center gap-1.5">
+                        <Link
+                            href="/login"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                        >
+                            <LogIn className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
+                            Sign In
+                        </Link>
+                        <Link
+                            href="/register"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                        >
+                            <UserPlus className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
+                            Sign Up
+                        </Link>
+                        {onSwitchToLanding && (
+                            <button
+                                onClick={onSwitchToLanding}
+                                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/90 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 transition hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
+                                title="Return to Product Landing Page"
+                            >
+                                🌐 Landing Page
+                            </button>
+                        )}
+                    </div>
 
                     {/* Action Buttons */}
                     <button
@@ -179,37 +210,6 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                         <Plus className="h-4 w-4 text-blue-400" />
                         New Donor
                     </button>
-                </div>
-            </div>
-
-            {/* Navigation Bar */}
-            <div className="no-scrollbar overflow-x-auto border-t border-slate-800/80 bg-slate-950/80 px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto flex max-w-7xl min-w-max items-center space-x-1 py-1.5">
-                    {navItems.map((item) => {
-                        const Icon = item.icon;
-                        const isActive = activeTab === item.id;
-                        return (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveTab(item.id)}
-                                className={`inline-flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-bold transition-all ${
-                                    isActive
-                                        ? 'bg-rose-600 text-white shadow-md shadow-rose-900/30'
-                                        : 'text-slate-400 hover:bg-slate-900/80 hover:text-slate-200'
-                                }`}
-                            >
-                                <Icon
-                                    className={`h-4 w-4 ${isActive ? 'text-white' : 'text-slate-400'}`}
-                                />
-                                <span>{item.label}</span>
-                                {item.badge && item.badge > 0 ? (
-                                    <span className="py-0.2 ml-1 rounded-full bg-rose-500 px-1.5 text-[10px] font-black text-white">
-                                        {item.badge}
-                                    </span>
-                                ) : null}
-                            </button>
-                        );
-                    })}
                 </div>
             </div>
         </header>

@@ -10,7 +10,16 @@ export type UseAppearanceReturn = {
 };
 
 const listeners = new Set<() => void>();
-let currentAppearance: Appearance = 'system';
+
+const getStoredAppearance = (): Appearance => {
+    if (typeof window === 'undefined') {
+        return 'system';
+    }
+
+    return (localStorage.getItem('appearance') as Appearance) || 'dark';
+};
+
+let currentAppearance: Appearance = typeof window !== 'undefined' ? getStoredAppearance() : 'dark';
 
 const prefersDark = (): boolean => {
     if (typeof window === 'undefined') {
@@ -27,14 +36,6 @@ const setCookie = (name: string, value: string, days = 365): void => {
 
     const maxAge = days * 24 * 60 * 60;
     document.cookie = `${name}=${value};path=/;max-age=${maxAge};SameSite=Lax`;
-};
-
-const getStoredAppearance = (): Appearance => {
-    if (typeof window === 'undefined') {
-        return 'system';
-    }
-
-    return (localStorage.getItem('appearance') as Appearance) || 'system';
 };
 
 const isDarkMode = (appearance: Appearance): boolean => {
@@ -75,13 +76,11 @@ export function initializeTheme(): void {
         return;
     }
 
-    if (!localStorage.getItem('appearance')) {
-        localStorage.setItem('appearance', 'system');
-        setCookie('appearance', 'system');
-    }
-
-    currentAppearance = getStoredAppearance();
-    applyTheme(currentAppearance);
+    // Always enforce dark mode — app uses dark slate theme globally
+    localStorage.setItem('appearance', 'dark');
+    setCookie('appearance', 'dark');
+    currentAppearance = 'dark';
+    applyTheme('dark');
 
     // Set up system theme change listener
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);

@@ -39,7 +39,7 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
         link.setAttribute('href', encodedUri);
         link.setAttribute(
             'download',
-            `BBIMS_Audit_Compliance_Report_${new Date().toISOString().split('T')[0]}.csv`,
+            `BloodMatrix_Audit_Compliance_Report_${new Date().toISOString().split('T')[0]}.csv`,
         );
         document.body.appendChild(link);
         link.click();
@@ -49,21 +49,21 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
     return (
         <div className="space-y-6">
             {/* Header Banner */}
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-900/90 p-6 shadow-xl">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-6 shadow-sm dark:shadow-xl transition-colors">
                 <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-600/20 p-3 text-emerald-400">
+                    <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-3 text-emerald-600 dark:text-emerald-400">
                         <ShieldCheck className="h-7 w-7" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <h2 className="text-xl font-bold text-white">
+                            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                                 HIPAA & FDA Regulatory Audit Log
                             </h2>
-                            <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-400">
+                            <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                                 Immutable Cryptographic Hash Logs
                             </span>
                         </div>
-                        <p className="text-xs text-slate-400">
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
                             Complete chain of custody tracing for blood intake,
                             electronic cross-matching, discards, and donor PHI
                             protection.
@@ -81,10 +81,10 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
             </div>
 
             {/* Audit Logs Table */}
-            <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
-                <div className="flex items-center justify-between border-b border-slate-800 p-4">
-                    <h3 className="flex items-center gap-2 text-sm font-bold text-white">
-                        <FileText className="h-4 w-4 text-emerald-400" />
+            <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 shadow-sm dark:shadow-xl transition-colors">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
+                        <FileText className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                         System Audit Logs ({auditLogs.length} Entries)
                     </h3>
                 </div>
@@ -92,7 +92,7 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
                         <thead>
-                            <tr className="border-b border-slate-800 bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
+                            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                                 <th className="px-4 py-3">Timestamp</th>
                                 <th className="px-4 py-3">Authorized Staff</th>
                                 <th className="px-4 py-3">Action</th>
@@ -103,30 +103,30 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-800/60 text-xs">
+                        <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-xs">
                             {auditLogs.map((log) => (
                                 <tr
                                     key={log.id}
-                                    className="transition hover:bg-slate-800/40"
+                                    className="transition hover:bg-slate-100/60 dark:hover:bg-slate-800/40"
                                 >
-                                    <td className="px-4 py-3 font-mono text-[11px] text-slate-400">
+                                    <td className="px-4 py-3 font-mono text-[11px] text-slate-500 dark:text-slate-400">
                                         {log.timestamp}
                                     </td>
-                                    <td className="px-4 py-3 font-semibold text-slate-200">
+                                    <td className="px-4 py-3 font-semibold text-slate-800 dark:text-slate-200">
                                         {log.userStaff}
                                     </td>
                                     <td className="px-4 py-3">
-                                        <span className="inline-flex items-center rounded border border-slate-700 bg-slate-800 px-2 py-0.5 text-[11px] font-bold text-slate-200">
+                                        <span className="inline-flex items-center rounded border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-bold text-slate-800 dark:text-slate-200">
                                             {log.action}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 font-mono font-bold text-purple-400">
+                                    <td className="px-4 py-3 font-mono font-bold text-purple-600 dark:text-purple-400">
                                         {log.entityId}
                                     </td>
-                                    <td className="max-w-md truncate px-4 py-3 text-slate-300">
+                                    <td className="max-w-md truncate px-4 py-3 text-slate-600 dark:text-slate-300">
                                         {log.details}
                                     </td>
-                                    <td className="px-4 py-3 text-right font-mono text-[11px] text-emerald-400">
+                                    <td className="px-4 py-3 text-right font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
                                         {log.digitalSignatureHash}
                                     </td>
                                 </tr>
@@ -137,10 +137,10 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
             </div>
 
             {/* Discard Logs Table */}
-            <div className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 shadow-xl">
-                <div className="flex items-center justify-between border-b border-slate-800 p-4">
-                    <h3 className="flex items-center gap-2 text-sm font-bold text-white">
-                        <AlertTriangle className="h-4 w-4 text-rose-400" />
+            <div className="overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 shadow-sm dark:shadow-xl transition-colors">
+                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 p-4">
+                    <h3 className="flex items-center gap-2 text-sm font-bold text-slate-900 dark:text-white">
+                        <AlertTriangle className="h-4 w-4 text-rose-500 dark:text-rose-400" />
                         Blood Discard Log ({discardLogs.length} Entries)
                     </h3>
                 </div>
@@ -148,7 +148,7 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
                         <thead>
-                            <tr className="border-b border-slate-800 bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-400 uppercase">
+                            <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 text-[11px] font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                                 <th className="px-4 py-3">Discard Date</th>
                                 <th className="px-4 py-3">Unit Barcode</th>
                                 <th className="px-4 py-3">Type & Component</th>
@@ -159,30 +159,30 @@ export const AuditComplianceTab: React.FC<AuditTabProps> = ({
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-800/60 text-xs">
+                        <tbody className="divide-y divide-slate-200 dark:divide-slate-800/60 text-xs">
                             {discardLogs.map((dsc) => (
                                 <tr
                                     key={dsc.id}
-                                    className="transition hover:bg-slate-800/40"
+                                    className="transition hover:bg-slate-100/60 dark:hover:bg-slate-800/40"
                                 >
-                                    <td className="px-4 py-3 font-mono text-[11px] text-slate-400">
+                                    <td className="px-4 py-3 font-mono text-[11px] text-slate-500 dark:text-slate-400">
                                         {dsc.discardDate}
                                     </td>
-                                    <td className="px-4 py-3 font-mono font-bold text-rose-400">
+                                    <td className="px-4 py-3 font-mono font-bold text-rose-600 dark:text-rose-400">
                                         {dsc.unitNumber}
                                     </td>
-                                    <td className="px-4 py-3 text-slate-200">
+                                    <td className="px-4 py-3 text-slate-800 dark:text-slate-200">
                                         {dsc.bloodType} ({dsc.component})
                                     </td>
                                     <td className="px-4 py-3">
-                                        <span className="inline-flex items-center rounded border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[11px] font-bold text-rose-300">
+                                        <span className="inline-flex items-center rounded border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[11px] font-bold text-rose-700 dark:text-rose-300">
                                             {dsc.reason}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-slate-300">
+                                    <td className="px-4 py-3 text-slate-600 dark:text-slate-300">
                                         {dsc.facilityName}
                                     </td>
-                                    <td className="px-4 py-3 text-right text-slate-300">
+                                    <td className="px-4 py-3 text-right text-slate-600 dark:text-slate-300">
                                         {dsc.performedBy}
                                     </td>
                                 </tr>

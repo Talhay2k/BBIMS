@@ -33,7 +33,7 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
     };
 
     return (
-        <div className="mb-6 rounded-2xl border border-slate-800/80 bg-slate-900/80 p-5 shadow-xl backdrop-blur-md">
+        <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-xl backdrop-blur-md transition-colors">
             <div className="mb-4 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-rose-500/20 bg-rose-500/10 text-rose-400">
@@ -73,11 +73,10 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
                             onClick={() =>
                                 onSelectType(isSelected ? 'All' : type)
                             }
-                            className={`group relative overflow-hidden rounded-xl border p-3.5 text-left transition-all ${
-                                isSelected
-                                    ? 'scale-[1.02] border-rose-400 bg-rose-600 text-white shadow-lg shadow-rose-900/40'
-                                    : 'border-slate-800/80 bg-slate-950/60 text-slate-200 hover:border-rose-500/40 hover:bg-slate-900/90'
-                            }`}
+                            className={`group relative overflow-hidden rounded-xl border p-3.5 text-left transition-all ${isSelected
+                                ? 'scale-[1.02] border-rose-400 bg-rose-600 text-white shadow-lg shadow-rose-900/40'
+                                : 'border-slate-800 bg-slate-950/60 text-slate-200 hover:border-rose-500/40 hover:bg-slate-900/90'
+                                }`}
                         >
                             <div className="flex items-center justify-between">
                                 <span
@@ -108,15 +107,14 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
                             </div>
 
                             {/* Stock status indicator bar */}
-                            <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800/60">
+                            <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
                                 <div
-                                    className={`h-full transition-all duration-500 ${
-                                        isLow
-                                            ? 'bg-amber-400'
-                                            : isSelected
-                                              ? 'bg-white'
-                                              : 'bg-rose-500'
-                                    }`}
+                                    className={`h-full transition-all duration-500 ${isLow
+                                        ? 'bg-amber-400'
+                                        : isSelected
+                                            ? 'bg-white'
+                                            : 'bg-rose-500'
+                                        }`}
                                     style={{
                                         width: `${Math.min(100, (count / 10) * 100)}%`,
                                     }}

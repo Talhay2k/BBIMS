@@ -90,7 +90,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
     return (
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {/* Total Stock */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
                 <div className="absolute top-0 right-0 p-4 text-rose-500 opacity-10">
                     <Layers className="h-20 w-20" />
                 </div>
@@ -118,7 +118,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
                         </div>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800/80 pt-3 text-xs text-slate-400">
+                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
                     <span>
                         PRBC:{' '}
                         <strong className="text-slate-200">{prbcCount}</strong>
@@ -139,7 +139,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
             </div>
 
             {/* Expiry Risk Alerts */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
                 <div className="absolute top-0 right-0 p-4 text-amber-500 opacity-10">
                     <AlertTriangle className="h-20 w-20" />
                 </div>
@@ -167,7 +167,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
                         </span>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800/80 pt-3 text-xs">
+                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs">
                     <span className="font-medium text-rose-400">
                         Critical (&le; 3 days):{' '}
                         <strong className="font-bold text-rose-300">
@@ -184,7 +184,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
             </div>
 
             {/* Hospital Orders & Dispatch */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
                 <div className="absolute top-0 right-0 p-4 text-blue-500 opacity-10">
                     <Truck className="h-20 w-20" />
                 </div>
@@ -212,7 +212,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
                         </span>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800/80 pt-3 text-xs text-slate-400">
+                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
                     <span>
                         Completed Today:{' '}
                         <strong className="text-emerald-400">12</strong>
@@ -225,7 +225,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
             </div>
 
             {/* Donors & Campaigns */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
                 <div className="absolute top-0 right-0 p-4 text-purple-500 opacity-10">
                     <Users className="h-20 w-20" />
                 </div>
@@ -252,7 +252,7 @@ export const StatsSummary: React.FC<StatsProps> = ({
                         </span>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800/80 pt-3 text-xs text-slate-400">
+                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
                     <span>
                         Active Drives:{' '}
                         <strong className="text-purple-300">
