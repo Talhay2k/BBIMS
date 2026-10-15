@@ -33,19 +33,18 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
     };
 
     return (
-        <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-5 shadow-xl backdrop-blur-md transition-colors">
-            <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-rose-500/20 bg-rose-500/10 text-rose-400">
+        <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm transition-colors">
+            <div className="mb-4 flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-red-200/60 bg-red-50 dark:border-red-500/20 dark:bg-red-500/10 text-red-600 dark:text-red-400">
                         <Flame className="h-4 w-4" />
                     </div>
                     <div>
-                        <h3 className="text-sm font-bold text-white">
+                        <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
                             Live Stock Matrix by Blood Group
                         </h3>
-                        <p className="text-[11px] text-slate-400">
-                            Click any blood group to quickly filter the
-                            inventory list below
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                            Click any blood group to filter the inventory list below
                         </p>
                     </div>
                 </div>
@@ -53,7 +52,7 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
                 {selectedType !== 'All' && (
                     <button
                         onClick={() => onSelectType('All')}
-                        className="rounded-lg bg-slate-800 px-2.5 py-1 text-xs font-semibold text-rose-400 transition hover:bg-slate-700"
+                        className="rounded-lg bg-slate-100 dark:bg-[#0B0F17] px-3 py-1 text-xs font-semibold text-red-600 dark:text-red-400 border border-slate-200 dark:border-[#222F44] hover:bg-slate-200 dark:hover:bg-[#1E293B] transition cursor-pointer"
                     >
                         Reset Filter (Showing {selectedType})
                     </button>
@@ -65,60 +64,65 @@ export const BloodGroupMatrix: React.FC<BloodMatrixProps> = ({
                     const count = getStockCount(type);
                     const isSelected = selectedType === type;
                     const isUniversal = type === 'O-';
-                    const isLow = count <= 2;
+                    const isCritical = count <= 2;
+                    const isWarning = count > 2 && count <= 5;
 
                     return (
                         <button
                             key={type}
-                            onClick={() =>
-                                onSelectType(isSelected ? 'All' : type)
-                            }
-                            className={`group relative overflow-hidden rounded-xl border p-3.5 text-left transition-all ${isSelected
-                                ? 'scale-[1.02] border-rose-400 bg-rose-600 text-white shadow-lg shadow-rose-900/40'
-                                : 'border-slate-800 bg-slate-950/60 text-slate-200 hover:border-rose-500/40 hover:bg-slate-900/90'
-                                }`}
+                            onClick={() => onSelectType(isSelected ? 'All' : type)}
+                            className={`group relative overflow-hidden rounded-xl border p-3.5 text-left transition-all cursor-pointer ${
+                                isSelected
+                                    ? 'border-red-500 bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-400 shadow-xs ring-1 ring-red-500/30'
+                                    : 'border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] text-slate-800 dark:text-slate-200 hover:border-red-300 dark:hover:border-red-900/60 hover:bg-white dark:hover:bg-[#1E293B] shadow-2xs'
+                            }`}
                         >
                             <div className="flex items-center justify-between">
                                 <span
-                                    className={`font-mono text-lg font-black ${isSelected ? 'text-white' : 'text-rose-400'}`}
+                                    className={`font-mono text-lg font-black ${
+                                        isSelected 
+                                            ? 'text-red-600 dark:text-red-400' 
+                                            : 'text-slate-900 dark:text-slate-100'
+                                    }`}
                                 >
                                     {type}
                                 </span>
                                 {isUniversal && (
                                     <span
-                                        className={`py-0.2 rounded px-1.5 text-[10px] font-bold ${isSelected ? 'bg-white/20 text-white' : 'bg-rose-500/20 text-rose-300'}`}
+                                        className={`rounded px-1.5 py-0.5 text-[10px] font-bold ${
+                                            isSelected 
+                                                ? 'bg-red-200/60 dark:bg-red-500/20 text-red-800 dark:text-red-300' 
+                                                : 'bg-red-50 dark:bg-red-500/10 text-red-600 dark:text-red-400 border border-red-200/60 dark:border-red-500/20'
+                                        }`}
                                     >
                                         Universal
                                     </span>
                                 )}
                             </div>
 
-                            <div className="mt-2 flex items-baseline justify-between">
-                                <span
-                                    className={`text-2xl font-extrabold ${isSelected ? 'text-white' : 'text-white'}`}
-                                >
+                            <div className="mt-2.5 flex items-baseline justify-between">
+                                <span className="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                                     {count}
                                 </span>
-                                <span
-                                    className={`text-[10px] font-medium ${isSelected ? 'text-rose-100' : 'text-slate-400'}`}
-                                >
+                                <span className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
                                     units
                                 </span>
                             </div>
 
-                            {/* Stock status indicator bar */}
-                            <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                            {/* Consistent stock progress bar */}
+                            <div className="mt-2.5 h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-[#222F44]">
                                 <div
-                                    className={`h-full transition-all duration-500 ${isLow
-                                        ? 'bg-amber-400'
-                                        : isSelected
-                                            ? 'bg-white'
-                                            : 'bg-rose-500'
-                                        }`}
+                                    className={`h-full transition-all duration-500 ${
+                                        isCritical
+                                            ? 'bg-red-500'
+                                            : isWarning
+                                              ? 'bg-amber-500'
+                                              : 'bg-emerald-500'
+                                    }`}
                                     style={{
-                                        width: `${Math.min(100, (count / 10) * 100)}%`,
+                                        width: `${Math.min(100, Math.max(10, (count / 10) * 100))}%`,
                                     }}
-                                ></div>
+                                />
                             </div>
                         </button>
                     );

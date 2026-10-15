@@ -88,180 +88,177 @@ export const StatsSummary: React.FC<StatsProps> = ({
     ).length;
 
     return (
-        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {/* Total Stock */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
-                <div className="absolute top-0 right-0 p-4 text-rose-500 opacity-10">
-                    <Layers className="h-20 w-20" />
-                </div>
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {/* Card 1: Total Available Blood Stock */}
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                         Available Blood Stock
                     </span>
-                    <span className="inline-flex items-center rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-400">
-                        Live Sync
-                    </span>
-                </div>
-                <div className="mt-3 flex items-baseline justify-between">
-                    <div>
-                        <span className="text-3xl font-extrabold text-white">
-                            {totalStock}
+                    <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 dark:border-emerald-500/20 dark:bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                            Live Sync
                         </span>
-                        <span className="ml-2 text-xs text-slate-400">
-                            units
-                        </span>
-                    </div>
-                    <div className="text-right">
-                        <div className="flex items-center justify-end gap-1 text-xs font-semibold text-rose-400">
-                            <Flame className="h-3.5 w-3.5" />
-                            O- Universal: {universalO} units
+                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                            <Layers className="h-4 w-4" />
                         </div>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
+
+                <div className="mt-4 flex items-baseline justify-between">
+                    <div>
+                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+                            {totalStock}
+                        </span>
+                        <span className="ml-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
+                            units
+                        </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/10 px-2 py-1 rounded-lg border border-red-200/60 dark:border-red-500/20">
+                        <Flame className="h-3.5 w-3.5" />
+                        <span>O- Universal: {universalO}</span>
+                    </div>
+                </div>
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
                     <span>
-                        PRBC:{' '}
-                        <strong className="text-slate-200">{prbcCount}</strong>
+                        PRBC: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{prbcCount}</strong>
                     </span>
                     <span>
-                        Platelets:{' '}
-                        <strong className="text-slate-200">
-                            {plateletCount}
-                        </strong>
+                        Platelets: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{plateletCount}</strong>
                     </span>
                     <span>
-                        Plasma:{' '}
-                        <strong className="text-slate-200">
-                            {plasmaCount}
-                        </strong>
+                        Plasma: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{plasmaCount}</strong>
                     </span>
                 </div>
             </div>
 
-            {/* Expiry Risk Alerts */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
-                <div className="absolute top-0 right-0 p-4 text-amber-500 opacity-10">
-                    <AlertTriangle className="h-20 w-20" />
-                </div>
+            {/* Card 2: Expiry Date Alerts */}
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                         Expiry Date Alerts
                     </span>
-                    {criticalExpiryUnits > 0 ? (
-                        <span className="inline-flex animate-pulse items-center rounded-md border border-rose-500/30 bg-rose-500/20 px-2 py-0.5 text-xs font-bold text-rose-400">
-                            Action Required
-                        </span>
-                    ) : (
-                        <span className="inline-flex items-center rounded-md bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">
-                            Normal
-                        </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                        {criticalExpiryUnits > 0 ? (
+                            <span className="inline-flex items-center rounded-md border border-red-200/80 bg-red-50 dark:border-red-500/20 dark:bg-red-500/10 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:text-red-400">
+                                Action Required
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 dark:border-emerald-500/20 dark:bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                                Normal
+                            </span>
+                        )}
+                        <div className={`h-8 w-8 rounded-lg flex items-center justify-center border ${
+                            criticalExpiryUnits > 0 
+                                ? 'bg-red-50 dark:bg-red-500/10 border-red-200/60 dark:border-red-500/20 text-red-600 dark:text-red-400' 
+                                : 'bg-slate-100 dark:bg-[#0B0F17] border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400'
+                        }`}>
+                            <AlertTriangle className="h-4 w-4" />
+                        </div>
+                    </div>
                 </div>
-                <div className="mt-3 flex items-baseline justify-between">
+
+                <div className="mt-4 flex items-baseline justify-between">
                     <div>
-                        <span className="text-3xl font-extrabold text-white">
+                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                             {criticalExpiryUnits + warningExpiryUnits}
                         </span>
-                        <span className="ml-2 text-xs text-slate-400">
+                        <span className="ml-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
                             near expiry
                         </span>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs">
-                    <span className="font-medium text-rose-400">
-                        Critical (&le; 3 days):{' '}
-                        <strong className="font-bold text-rose-300">
-                            {criticalExpiryUnits}
-                        </strong>
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs">
+                    <span className="text-red-600 dark:text-red-400 font-medium">
+                        Critical (&le; 3d): <strong className="font-bold">{criticalExpiryUnits}</strong>
                     </span>
-                    <span className="font-medium text-amber-400">
-                        Warning (&le; 7 days):{' '}
-                        <strong className="font-bold text-amber-300">
-                            {warningExpiryUnits}
-                        </strong>
+                    <span className="text-amber-600 dark:text-amber-400 font-medium">
+                        Warning (&le; 7d): <strong className="font-bold">{warningExpiryUnits}</strong>
                     </span>
                 </div>
             </div>
 
-            {/* Hospital Orders & Dispatch */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
-                <div className="absolute top-0 right-0 p-4 text-blue-500 opacity-10">
-                    <Truck className="h-20 w-20" />
-                </div>
+            {/* Card 3: Hospital Orders */}
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                         Hospital Orders
                     </span>
-                    {emergencyStatRequests > 0 ? (
-                        <span className="inline-flex animate-bounce items-center rounded-md bg-rose-600 px-2 py-0.5 text-xs font-extrabold text-white">
-                            EMERGENCY STAT: {emergencyStatRequests}
-                        </span>
-                    ) : (
-                        <span className="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-400">
-                            Normal Stream
-                        </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                        {emergencyStatRequests > 0 ? (
+                            <span className="inline-flex items-center rounded-md bg-red-600 px-2 py-0.5 text-[11px] font-bold text-white shadow-xs">
+                                STAT: {emergencyStatRequests}
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center rounded-md border border-blue-200/60 bg-blue-50 dark:border-blue-500/20 dark:bg-blue-500/10 px-2 py-0.5 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                                Normal Stream
+                            </span>
+                        )}
+                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                            <Truck className="h-4 w-4" />
+                        </div>
+                    </div>
                 </div>
-                <div className="mt-3 flex items-baseline justify-between">
+
+                <div className="mt-4 flex items-baseline justify-between">
                     <div>
-                        <span className="text-3xl font-extrabold text-white">
+                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                             {pendingRequests}
                         </span>
-                        <span className="ml-2 text-xs text-slate-400">
+                        <span className="ml-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
                             active orders
                         </span>
                     </div>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
                     <span>
-                        Completed Today:{' '}
-                        <strong className="text-emerald-400">12</strong>
+                        Completed Today: <strong className="text-emerald-600 dark:text-emerald-400 font-semibold">12</strong>
                     </span>
                     <span>
-                        Dispatch Ready:{' '}
-                        <strong className="text-blue-400">3</strong>
+                        Dispatch Ready: <strong className="text-blue-600 dark:text-blue-400 font-semibold">3</strong>
                     </span>
                 </div>
             </div>
 
-            {/* Donors & Campaigns */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/90 p-5 shadow-lg transition-colors">
-                <div className="absolute top-0 right-0 p-4 text-purple-500 opacity-10">
-                    <Users className="h-20 w-20" />
-                </div>
+            {/* Card 4: Donors & Campaigns */}
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
                         Donors & Campaigns
                     </span>
-                    <span className="inline-flex items-center rounded-md border border-purple-500/20 bg-purple-500/10 px-2 py-0.5 text-xs font-semibold text-purple-300">
-                        Network Active
-                    </span>
+                    <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center rounded-md border border-purple-200/60 bg-purple-50 dark:border-purple-500/20 dark:bg-purple-500/10 px-2 py-0.5 text-[11px] font-semibold text-purple-700 dark:text-purple-300">
+                            Network Active
+                        </span>
+                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                            <Users className="h-4 w-4" />
+                        </div>
+                    </div>
                 </div>
-                <div className="mt-3 flex items-baseline justify-between">
+
+                <div className="mt-4 flex items-baseline justify-between">
                     <div>
-                        <span className="text-3xl font-extrabold text-white">
+                        <span className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                             {donors.length}
                         </span>
-                        <span className="ml-2 text-xs text-slate-400">
+                        <span className="ml-1.5 text-xs font-medium text-slate-500 dark:text-slate-400">
                             registered
                         </span>
                     </div>
-                    <div className="text-right">
-                        <span className="block text-xs font-semibold text-emerald-400">
-                            {eligibleDonors} Eligible
-                        </span>
-                    </div>
+                    <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-200/60 dark:border-emerald-500/20">
+                        {eligibleDonors} Eligible
+                    </span>
                 </div>
-                <div className="mt-4 flex items-center justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
+
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
                     <span>
-                        Active Drives:{' '}
-                        <strong className="text-purple-300">
-                            {activeDrives}
-                        </strong>
+                        Active Drives: <strong className="text-purple-600 dark:text-purple-300 font-semibold">{activeDrives}</strong>
                     </span>
                     <span>
-                        Target:{' '}
-                        <strong className="text-slate-200">210 units</strong>
+                        Target: <strong className="text-slate-800 dark:text-slate-200 font-semibold">210 units</strong>
                     </span>
                 </div>
             </div>

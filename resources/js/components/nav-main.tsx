@@ -37,39 +37,39 @@ export function NavMain({ items }: { items: NavItem[] }) {
     };
 
     return (
-        <SidebarGroup className="px-2 py-0">
-            <SidebarGroupLabel className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-2">
+        <SidebarGroup className="px-3 py-1">
+            <SidebarGroupLabel className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-1.5 px-3">
                 Platform Navigation
             </SidebarGroupLabel>
-            <SidebarMenu className="space-y-0.5">
+            <SidebarMenu className="space-y-1">
                 {items.map((item) => {
                     const hrefStr = typeof item.href === 'string' ? item.href : item.href.url;
                     const active = isItemActive(hrefStr);
                     return (
                         <SidebarMenuItem key={item.title}>
-                            <SidebarMenuButton
-                                asChild
-                                isActive={active}
-                                tooltip={{ children: item.title }}
-                                className={`transition-all rounded-xl text-xs ${
+                            <Link
+                                href={hrefStr}
+                                prefetch
+                                className={`group relative flex h-9.5 w-full items-center gap-3 rounded-xl px-3 text-xs transition-all ${
                                     active
-                                        ? 'bg-rose-500/10 text-rose-400 font-bold border border-rose-500/20 shadow-sm'
-                                        : 'hover:bg-rose-500/5 hover:text-rose-400 text-slate-300 font-medium'
+                                        ? 'bg-red-50 text-red-600 font-medium dark:bg-red-500/10 dark:text-red-400 dark:font-semibold'
+                                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium'
                                 }`}
                             >
-                                <Link href={typeof item.href === 'string' ? item.href : item.href.url} prefetch>
-                                    {item.icon && (
-                                        <item.icon
-                                            className={`h-4 w-4 shrink-0 transition-colors ${
-                                                active
-                                                    ? 'text-rose-400'
-                                                    : 'text-slate-500 group-hover:text-rose-400'
-                                            }`}
-                                        />
-                                    )}
-                                    <span className="truncate">{item.title}</span>
-                                </Link>
-                            </SidebarMenuButton>
+                                {active && (
+                                    <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-red-600 dark:bg-red-500" />
+                                )}
+                                {item.icon && (
+                                    <item.icon
+                                        className={`h-4 w-4 shrink-0 transition-colors ${
+                                            active
+                                                ? 'text-red-600 dark:text-red-400'
+                                                : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-200'
+                                        }`}
+                                    />
+                                )}
+                                <span className="truncate">{item.title}</span>
+                            </Link>
                         </SidebarMenuItem>
                     );
                 })}

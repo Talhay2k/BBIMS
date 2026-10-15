@@ -14,7 +14,6 @@ import { AiForecastTab } from '@/components/bbims/AiForecastTab';
 import { AuditComplianceTab } from '@/components/bbims/AuditComplianceTab';
 import { BloodGroupMatrix } from '@/components/bbims/BloodGroupMatrix';
 import { BbimsModals } from '@/components/bbims/BbimsModals';
-import { useAppearance } from '@/hooks/use-appearance';
 import {
     LayoutGrid,
     Droplet,
@@ -29,8 +28,6 @@ import {
     Activity,
     Hospital,
     Landmark,
-    Sun,
-    Moon,
 } from 'lucide-react';
 
 type TabKey = 'overview' | 'inventory' | 'requests' | 'compatibility' | 'donors' | 'drives' | 'facilities' | 'ai' | 'audit';
@@ -39,11 +36,6 @@ type PortalKey = 'all' | 'blood_bank' | 'hospital' | 'ministry';
 export default function Dashboard() {
     const { auth } = usePage<{ auth?: { user?: { name?: string } } }>().props;
     const userName = auth?.user?.name || 'System Administrator';
-    const { resolvedAppearance, updateAppearance } = useAppearance();
-
-    const toggleTheme = () => {
-        updateAppearance(resolvedAppearance === 'dark' ? 'light' : 'dark');
-    };
 
     // State Management
     const [units, setUnits] = useState<BloodUnit[]>(initialUnits);
@@ -230,54 +222,41 @@ export default function Dashboard() {
     ];
 
     return (
-        <div className="flex h-full flex-1 flex-col gap-4 p-4 lg:p-6 bg-background text-foreground transition-colors">
+        <div className="flex h-full flex-1 flex-col gap-6 p-6 bg-[#F8FAFC] dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100 transition-colors">
             <Head title="BloodMatrix Command Center" />
 
             {/* Top Unified Header & Actions */}
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between rounded-xl border border-border bg-card/80 p-4 shadow-lg backdrop-blur-md">
-                <div>
-                    <div className="flex items-center gap-2">
-                        <span className="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                        <h1 className="text-xl font-extrabold tracking-tight text-foreground">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm transition-colors">
+                <div className="space-y-1">
+                    <div className="flex items-center gap-2.5">
+                        <span className="relative flex h-2.5 w-2.5">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <h1 className="text-xl lg:text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
                             BloodMatrix Command Center
                         </h1>
+                        <span className="hidden sm:inline-flex items-center rounded-md bg-red-50 dark:bg-red-500/10 px-2 py-0.5 text-[11px] font-semibold text-red-600 dark:text-red-400 border border-red-200/60 dark:border-red-500/20">
+                            Live Telemetry
+                        </span>
                     </div>
-                    <p className="text-xs text-muted-foreground mt-0.5">
-                        Logged in as <strong className="text-foreground">{userName}</strong> • Cold-chain telemetry & STAT supply network active
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                        Allied Hospital Faisalabad • Logged in as <strong className="text-slate-800 dark:text-slate-200 font-semibold">{userName}</strong> • Sub-3 min cross-matching active
                     </p>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-2 flex-wrap">
-                    <button
-                        onClick={toggleTheme}
-                        className="h-8.5 px-3 rounded-xl border border-border bg-card hover:bg-accent text-foreground text-xs font-semibold shadow-xs transition-all flex items-center gap-2 cursor-pointer"
-                        title={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
-                        aria-label={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
-                    >
-                        {resolvedAppearance === 'dark' ? (
-                            <>
-                                <Sun className="h-3.5 w-3.5 text-amber-400" />
-                                <span>Light Mode</span>
-                            </>
-                        ) : (
-                            <>
-                                <Moon className="h-3.5 w-3.5 text-slate-700 dark:text-slate-300" />
-                                <span>Dark Mode</span>
-                            </>
-                        )}
-                    </button>
-
+                <div className="flex items-center gap-2.5 flex-wrap">
                     <button
                         onClick={() => setIsIntakeOpen(true)}
-                        className="h-8.5 px-3 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-1.5 border border-rose-500/30"
+                        className="h-9 px-4 rounded-xl bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-xs hover:shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
                     >
                         <Plus className="h-3.5 w-3.5" />
                         <span>Add Unit</span>
                     </button>
                     <button
                         onClick={() => setIsRequestOpen(true)}
-                        className="h-8.5 px-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-sm transition-all flex items-center gap-1.5 border border-blue-500/30"
+                        className="h-9 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-[#0B0F17] dark:hover:bg-[#1E293B] text-white text-xs font-bold shadow-xs hover:shadow-sm transition-all flex items-center gap-1.5 border border-slate-200 dark:border-[#222F44] cursor-pointer"
                     >
                         <Truck className="h-3.5 w-3.5" />
                         <span>STAT Order</span>
@@ -293,9 +272,8 @@ export default function Dashboard() {
                 drives={drives}
             />
 
-
             {/* Active Tab View */}
-            <div className="mt-1 flex-1">
+            <div className="flex-1">
                 {activeTab === 'overview' && (
                     <div className="space-y-6">
                         <BloodGroupMatrix units={units} selectedType={selectedBloodType} onSelectType={setSelectedBloodType} />

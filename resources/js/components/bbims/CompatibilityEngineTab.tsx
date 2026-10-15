@@ -86,16 +86,16 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
     return (
         <div className="space-y-6">
             {/* Header Banner */}
-            <div className="rounded-2xl border border-purple-200 dark:border-purple-800/40 bg-gradient-to-r from-purple-100 via-white to-purple-50 dark:from-purple-900/60 dark:via-slate-900 dark:to-slate-900 p-6 shadow-sm dark:shadow-xl transition-colors">
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-6 shadow-sm transition-colors">
                 <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-purple-500/30 bg-purple-600/20 p-3 text-purple-600 dark:text-purple-400">
+                    <div className="rounded-xl border border-purple-200 dark:border-purple-500/20 bg-purple-50 dark:bg-purple-500/10 p-3 text-purple-600 dark:text-purple-400">
                         <GitCompare className="h-7 w-7" />
                     </div>
                     <div>
-                        <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+                        <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
                             Automated Cross-Match & Compatibility Engine
                         </h2>
-                        <p className="text-xs text-slate-600 dark:text-slate-400">
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
                             Real-time ABO/Rh antigens compatibility matrix and
                             plasma cross-match validation algorithms.
                         </p>
@@ -106,8 +106,8 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
             {/* Interactive Calculator Section */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 {/* Left Inputs */}
-                <div className="space-y-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-5 shadow-sm dark:shadow-lg transition-colors">
-                    <h3 className="flex items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3 text-sm font-bold text-slate-900 dark:text-white">
+                <div className="space-y-4 rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 shadow-sm transition-colors">
+                    <h3 className="flex items-center gap-2 border-b border-slate-200 dark:border-[#222F44] pb-3 text-sm font-bold text-slate-900 dark:text-slate-100">
                         <Sparkles className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                         Recipient Compatibility Lookup
                     </h3>
@@ -174,10 +174,10 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                 </div>
 
                 {/* Right Compatibility Results */}
-                <div className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-5 shadow-sm dark:shadow-lg transition-colors lg:col-span-2">
+                <div className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 shadow-sm transition-colors lg:col-span-2">
                     <div>
-                        <div className="mb-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-                            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+                        <div className="mb-4 flex items-center justify-between border-b border-slate-200 dark:border-[#222F44] pb-3">
+                            <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
                                 Compatible Donor Groups for Recipient{' '}
                                 <span className="font-mono text-base font-extrabold text-purple-600 dark:text-purple-400">
                                     {recipientType}
@@ -208,7 +208,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                         className={`flex flex-col justify-between rounded-xl border p-3.5 transition ${
                                             isCompatible
                                                 ? 'border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300'
-                                                : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/50 text-slate-400 dark:text-slate-600 opacity-60'
+                                                : 'border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17]/60 text-slate-400 dark:text-slate-500 opacity-60'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
@@ -240,7 +240,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                     </div>
 
                     {/* Matching Units List */}
-                    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80 p-3 text-xs">
+                    <div className="rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] p-3 text-xs">
                         <span className="mb-2 block font-bold text-slate-700 dark:text-slate-300">
                             Matching Ready Units in Inventory (
                             {matchingAvailableUnits.length}):
@@ -255,7 +255,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                 matchingAvailableUnits.map((u) => (
                                     <span
                                         key={u.id}
-                                        className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2.5 py-1 font-mono text-slate-800 dark:text-slate-200"
+                                        className="rounded border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] px-2.5 py-1 font-mono text-slate-800 dark:text-slate-200"
                                     >
                                         {u.unitNumber} ({u.bloodType}) •{' '}
                                         {u.facilityName}
@@ -268,8 +268,8 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
             </div>
 
             {/* Test Pair Simulator Widget */}
-            <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-6 shadow-sm dark:shadow-xl transition-colors">
-                <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
+            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-6 shadow-sm transition-colors">
+                <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-slate-100">
                     <ShieldAlert className="h-5 w-5 text-amber-500 dark:text-amber-400" />
                     Electronic Cross-Match Pair Validation Simulator
                 </h3>
@@ -286,7 +286,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     e.target.value as BloodType,
                                 )
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200"
+                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
                         >
                             {bloodTypes.map((t) => (
                                 <option key={t} value={t}>
@@ -305,7 +305,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                             onChange={(e) =>
                                 setTestDonorType(e.target.value as BloodType)
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200"
+                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
                         >
                             {bloodTypes.map((t) => (
                                 <option key={t} value={t}>
@@ -326,7 +326,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     e.target.value as ComponentType,
                                 )
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200"
+                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
                         >
                             <option value="Packed Red Blood Cells">
                                 Packed Red Blood Cells

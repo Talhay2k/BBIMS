@@ -78,24 +78,18 @@ const footerNavItems: NavItem[] = [];
 
 export function AppSidebar() {
     return (
-        <Sidebar collapsible="icon" variant="inset">
-            <SidebarHeader>
-                <SidebarMenu>
-                    <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
-                            <Link href={dashboard()} prefetch>
-                                <AppLogo />
-                            </Link>
-                        </SidebarMenuButton>
-                    </SidebarMenuItem>
-                </SidebarMenu>
+        <Sidebar collapsible="icon" variant="sidebar" className="border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B0F17]">
+            <SidebarHeader className="flex h-16 shrink-0 flex-row items-center border-b border-slate-200 dark:border-slate-800 px-4 py-0 gap-0 bg-white dark:bg-[#0B0F17]">
+                <Link href={dashboard()} prefetch className="flex items-center gap-2.5 w-full focus:outline-none">
+                    <AppLogo />
+                </Link>
             </SidebarHeader>
 
-            <SidebarContent>
+            <SidebarContent className="bg-white dark:bg-[#0B0F17]">
                 <NavMain items={mainNavItems} />
             </SidebarContent>
 
-            <SidebarFooter>
+            <SidebarFooter className="border-t border-slate-200 dark:border-slate-800 p-2 bg-white dark:bg-[#0B0F17]">
                 <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>

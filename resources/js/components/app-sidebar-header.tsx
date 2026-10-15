@@ -16,16 +16,16 @@ export function AppSidebarHeader({
     };
 
     return (
-        <header className="flex h-16 shrink-0 items-center justify-between border-b border-sidebar-border/50 px-6 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 md:px-4">
-            <div className="flex items-center gap-2">
-                <SidebarTrigger className="-ml-1" />
+        <header className="flex h-16 shrink-0 items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-[#F8FAFC] dark:bg-[#0B0F17] px-6 transition-colors ease-linear">
+            <div className="flex items-center gap-3">
+                <SidebarTrigger className="-ml-1 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100" />
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
 
             <div className="flex items-center gap-2">
                 <button
                     onClick={toggleTheme}
-                    className="inline-flex h-8.5 items-center gap-2 rounded-xl border border-border bg-card/80 px-3 text-xs font-semibold text-foreground shadow-xs backdrop-blur-md transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer"
+                    className="inline-flex h-8.5 items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#161D2A] px-3 text-xs font-semibold text-slate-800 dark:text-slate-200 shadow-xs transition-all hover:bg-slate-50 dark:hover:bg-[#1E293B] cursor-pointer"
                     title={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
                     aria-label={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
                 >
@@ -36,7 +36,7 @@ export function AppSidebarHeader({
                         </>
                     ) : (
                         <>
-                            <Moon className="h-4 w-4 text-slate-700 dark:text-slate-300" />
+                            <Moon className="h-4 w-4 text-slate-700" />
                             <span className="hidden sm:inline font-medium">Dark Mode</span>
                         </>
                     )}
