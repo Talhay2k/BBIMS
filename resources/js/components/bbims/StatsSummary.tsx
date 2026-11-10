@@ -90,16 +90,16 @@ export const StatsSummary: React.FC<StatsProps> = ({
     return (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {/* Card 1: Total Available Blood Stock */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md sm:p-6 dark:border-[#222F44] dark:bg-[#161D2A]">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                         Available Blood Stock
                     </span>
                     <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 dark:border-emerald-500/20 dark:bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                        <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
                             Live Sync
                         </span>
-                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200/60 bg-slate-100 text-slate-500 dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-400">
                             <Layers className="h-4 w-4" />
                         </div>
                     </div>
@@ -114,46 +114,57 @@ export const StatsSummary: React.FC<StatsProps> = ({
                             units
                         </span>
                     </div>
-                    <div className="flex items-center gap-1 text-xs font-semibold text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-500/10 px-2 py-1 rounded-lg border border-red-200/60 dark:border-red-500/20">
+                    <div className="flex items-center gap-1 rounded-lg border border-red-200/60 bg-red-50 px-2 py-1 text-xs font-semibold text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
                         <Flame className="h-3.5 w-3.5" />
                         <span>O- Universal: {universalO}</span>
                     </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-3.5 text-xs text-slate-500 dark:border-[#222F44] dark:text-slate-400">
                     <span>
-                        PRBC: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{prbcCount}</strong>
+                        PRBC:{' '}
+                        <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                            {prbcCount}
+                        </strong>
                     </span>
                     <span>
-                        Platelets: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{plateletCount}</strong>
+                        Platelets:{' '}
+                        <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                            {plateletCount}
+                        </strong>
                     </span>
                     <span>
-                        Plasma: <strong className="text-slate-800 dark:text-slate-200 font-semibold">{plasmaCount}</strong>
+                        Plasma:{' '}
+                        <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                            {plasmaCount}
+                        </strong>
                     </span>
                 </div>
             </div>
 
             {/* Card 2: Expiry Date Alerts */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md sm:p-6 dark:border-[#222F44] dark:bg-[#161D2A]">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                         Expiry Date Alerts
                     </span>
                     <div className="flex items-center gap-2">
                         {criticalExpiryUnits > 0 ? (
-                            <span className="inline-flex items-center rounded-md border border-red-200/80 bg-red-50 dark:border-red-500/20 dark:bg-red-500/10 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:text-red-400">
+                            <span className="inline-flex items-center rounded-md border border-red-200/80 bg-red-50 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400">
                                 Action Required
                             </span>
                         ) : (
-                            <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 dark:border-emerald-500/20 dark:bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400">
+                            <span className="inline-flex items-center rounded-md border border-emerald-200/60 bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
                                 Normal
                             </span>
                         )}
-                        <div className={`h-8 w-8 rounded-lg flex items-center justify-center border ${
-                            criticalExpiryUnits > 0 
-                                ? 'bg-red-50 dark:bg-red-500/10 border-red-200/60 dark:border-red-500/20 text-red-600 dark:text-red-400' 
-                                : 'bg-slate-100 dark:bg-[#0B0F17] border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400'
-                        }`}>
+                        <div
+                            className={`flex h-8 w-8 items-center justify-center rounded-lg border ${
+                                criticalExpiryUnits > 0
+                                    ? 'border-red-200/60 bg-red-50 text-red-600 dark:border-red-500/20 dark:bg-red-500/10 dark:text-red-400'
+                                    : 'border-slate-200/60 bg-slate-100 text-slate-500 dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-400'
+                            }`}
+                        >
                             <AlertTriangle className="h-4 w-4" />
                         </div>
                     </div>
@@ -170,20 +181,26 @@ export const StatsSummary: React.FC<StatsProps> = ({
                     </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs">
-                    <span className="text-red-600 dark:text-red-400 font-medium">
-                        Critical (&le; 3d): <strong className="font-bold">{criticalExpiryUnits}</strong>
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-3.5 text-xs dark:border-[#222F44]">
+                    <span className="font-medium text-red-600 dark:text-red-400">
+                        Critical (&le; 3d):{' '}
+                        <strong className="font-bold">
+                            {criticalExpiryUnits}
+                        </strong>
                     </span>
-                    <span className="text-amber-600 dark:text-amber-400 font-medium">
-                        Warning (&le; 7d): <strong className="font-bold">{warningExpiryUnits}</strong>
+                    <span className="font-medium text-amber-600 dark:text-amber-400">
+                        Warning (&le; 7d):{' '}
+                        <strong className="font-bold">
+                            {warningExpiryUnits}
+                        </strong>
                     </span>
                 </div>
             </div>
 
             {/* Card 3: Hospital Orders */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md sm:p-6 dark:border-[#222F44] dark:bg-[#161D2A]">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                         Hospital Orders
                     </span>
                     <div className="flex items-center gap-2">
@@ -192,11 +209,11 @@ export const StatsSummary: React.FC<StatsProps> = ({
                                 STAT: {emergencyStatRequests}
                             </span>
                         ) : (
-                            <span className="inline-flex items-center rounded-md border border-blue-200/60 bg-blue-50 dark:border-blue-500/20 dark:bg-blue-500/10 px-2 py-0.5 text-[11px] font-semibold text-blue-700 dark:text-blue-400">
+                            <span className="inline-flex items-center rounded-md border border-blue-200/60 bg-blue-50 px-2 py-0.5 text-[11px] font-semibold text-blue-700 dark:border-blue-500/20 dark:bg-blue-500/10 dark:text-blue-400">
                                 Normal Stream
                             </span>
                         )}
-                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200/60 bg-slate-100 text-slate-500 dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-400">
                             <Truck className="h-4 w-4" />
                         </div>
                     </div>
@@ -213,27 +230,33 @@ export const StatsSummary: React.FC<StatsProps> = ({
                     </div>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-slate-500 dark:border-[#222F44] dark:text-slate-400">
                     <span>
-                        Completed Today: <strong className="text-emerald-600 dark:text-emerald-400 font-semibold">12</strong>
+                        Completed Today:{' '}
+                        <strong className="font-semibold text-emerald-600 dark:text-emerald-400">
+                            12
+                        </strong>
                     </span>
                     <span>
-                        Dispatch Ready: <strong className="text-blue-600 dark:text-blue-400 font-semibold">3</strong>
+                        Dispatch Ready:{' '}
+                        <strong className="font-semibold text-blue-600 dark:text-blue-400">
+                            3
+                        </strong>
                     </span>
                 </div>
             </div>
 
             {/* Card 4: Donors & Campaigns */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:shadow-md sm:p-6 dark:border-[#222F44] dark:bg-[#161D2A]">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold tracking-wider text-slate-500 dark:text-slate-400 uppercase">
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase dark:text-slate-400">
                         Donors & Campaigns
                     </span>
                     <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center rounded-md border border-purple-200/60 bg-purple-50 dark:border-purple-500/20 dark:bg-purple-500/10 px-2 py-0.5 text-[11px] font-semibold text-purple-700 dark:text-purple-300">
+                        <span className="inline-flex items-center rounded-md border border-purple-200/60 bg-purple-50 px-2 py-0.5 text-[11px] font-semibold text-purple-700 dark:border-purple-500/20 dark:bg-purple-500/10 dark:text-purple-300">
                             Network Active
                         </span>
-                        <div className="h-8 w-8 rounded-lg flex items-center justify-center bg-slate-100 dark:bg-[#0B0F17] border border-slate-200/60 dark:border-[#222F44] text-slate-500 dark:text-slate-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200/60 bg-slate-100 text-slate-500 dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-400">
                             <Users className="h-4 w-4" />
                         </div>
                     </div>
@@ -248,17 +271,23 @@ export const StatsSummary: React.FC<StatsProps> = ({
                             registered
                         </span>
                     </div>
-                    <span className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-2 py-1 rounded-lg border border-emerald-200/60 dark:border-emerald-500/20">
+                    <span className="rounded-lg border border-emerald-200/60 bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-600 dark:border-emerald-500/20 dark:bg-emerald-500/10 dark:text-emerald-400">
                         {eligibleDonors} Eligible
                     </span>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between border-t border-slate-100 dark:border-[#222F44] pt-3.5 text-xs text-slate-500 dark:text-slate-400">
+                <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3.5 text-xs text-slate-500 dark:border-[#222F44] dark:text-slate-400">
                     <span>
-                        Active Drives: <strong className="text-purple-600 dark:text-purple-300 font-semibold">{activeDrives}</strong>
+                        Active Drives:{' '}
+                        <strong className="font-semibold text-purple-600 dark:text-purple-300">
+                            {activeDrives}
+                        </strong>
                     </span>
                     <span>
-                        Target: <strong className="text-slate-800 dark:text-slate-200 font-semibold">210 units</strong>
+                        Target:{' '}
+                        <strong className="font-semibold text-slate-800 dark:text-slate-200">
+                            210 units
+                        </strong>
                     </span>
                 </div>
             </div>

@@ -26,11 +26,11 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                 {facilities.map((fac) => (
                     <div
                         key={fac.id}
-                        className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-5 shadow-sm dark:shadow-lg transition-colors"
+                        className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-lg"
                     >
                         <div>
                             <div className="mb-2 flex items-center justify-between gap-2">
-                                <span className="font-mono text-xs font-bold text-rose-600 dark:text-rose-400">
+                                <span className="font-mono text-xs font-bold text-red-600 dark:text-red-400">
                                     {fac.code}
                                 </span>
                                 <span
@@ -50,7 +50,7 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                                 {fac.city}
                             </p>
 
-                            <div className="mb-3 grid grid-cols-2 gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-2.5 text-center text-xs">
+                            <div className="mb-3 grid grid-cols-2 gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-center text-xs dark:border-slate-800 dark:bg-slate-950">
                                 <div>
                                     <span className="block text-[10px] text-slate-500 uppercase">
                                         Stock Units
@@ -70,7 +70,7 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-between border-t border-slate-200 dark:border-slate-800/80 pt-3 text-[11px] text-slate-500 dark:text-slate-400">
+                        <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-200 pt-3 text-[11px] text-slate-500 dark:border-slate-800/80 dark:text-slate-400">
                             <span>Refrigerators: {fac.refrigeratorsCount}</span>
                             <span>Freezers: {fac.freezersCount}</span>
                             <span>Agitators: {fac.agitatorsCount}</span>
@@ -80,8 +80,8 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
             </div>
 
             {/* Storage Equipment Telemetry Monitors */}
-            <div className="space-y-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 p-6 shadow-sm dark:shadow-xl transition-colors">
-                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+            <div className="space-y-4 rounded-2xl border border-slate-200 bg-white/90 p-6 shadow-sm transition-colors dark:border-slate-800 dark:bg-slate-900/90 dark:shadow-xl">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3 dark:border-slate-800">
                     <div>
                         <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
                             <Thermometer className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
@@ -111,7 +111,7 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                                 key={eq.id}
                                 className={`rounded-xl border p-4 shadow-sm transition ${
                                     isNormal
-                                        ? 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/80'
+                                        ? 'border-slate-200 bg-slate-50 dark:border-slate-800 dark:bg-slate-950/80'
                                         : 'border-amber-500/40 bg-amber-50 dark:bg-amber-950/20'
                                 }`}
                             >
@@ -134,7 +134,7 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                                     {eq.type}
                                 </p>
 
-                                <div className="mb-3 flex items-baseline justify-between rounded-lg border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900/90 p-2.5">
+                                <div className="mb-3 flex items-baseline justify-between rounded-lg border border-slate-200 bg-white p-2.5 dark:border-slate-800/80 dark:bg-slate-900/90">
                                     <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
                                         Current Sensor Temp:
                                     </span>
@@ -158,7 +158,7 @@ export const StorageFacilitiesTab: React.FC<FacilitiesTabProps> = ({
                                             {percentCapacity}%)
                                         </strong>
                                     </div>
-                                    <div className="h-2 w-full overflow-hidden rounded-full border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900">
+                                    <div className="h-2 w-full overflow-hidden rounded-full border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900">
                                         <div
                                             className="h-full bg-emerald-500"
                                             style={{

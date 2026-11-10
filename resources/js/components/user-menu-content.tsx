@@ -40,7 +40,7 @@ export function UserMenuContent({ user }: Props) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
                 <DropdownMenuItem
-                    className="w-full cursor-pointer flex items-center"
+                    className="flex w-full cursor-pointer items-center"
                     onClick={toggleTheme}
                 >
                     {resolvedAppearance === 'dark' ? (

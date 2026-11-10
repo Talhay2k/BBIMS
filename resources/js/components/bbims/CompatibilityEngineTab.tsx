@@ -86,9 +86,9 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
     return (
         <div className="space-y-6">
             {/* Header Banner */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-6 shadow-sm transition-colors">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-[#222F44] dark:bg-[#161D2A]">
                 <div className="flex items-center gap-3">
-                    <div className="rounded-xl border border-purple-200 dark:border-purple-500/20 bg-purple-50 dark:bg-purple-500/10 p-3 text-purple-600 dark:text-purple-400">
+                    <div className="rounded-xl border border-purple-200 bg-purple-50 p-3 text-purple-600 dark:border-purple-500/20 dark:bg-purple-500/10 dark:text-purple-400">
                         <GitCompare className="h-7 w-7" />
                     </div>
                     <div>
@@ -106,8 +106,8 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
             {/* Interactive Calculator Section */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                 {/* Left Inputs */}
-                <div className="space-y-4 rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 shadow-sm transition-colors">
-                    <h3 className="flex items-center gap-2 border-b border-slate-200 dark:border-[#222F44] pb-3 text-sm font-bold text-slate-900 dark:text-slate-100">
+                <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors dark:border-[#222F44] dark:bg-[#161D2A]">
+                    <h3 className="flex items-center gap-2 border-b border-slate-200 pb-3 text-sm font-bold text-slate-900 dark:border-[#222F44] dark:text-slate-100">
                         <Sparkles className="h-4 w-4 text-purple-600 dark:text-purple-400" />
                         Recipient Compatibility Lookup
                     </h3>
@@ -124,7 +124,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     className={`rounded-xl border py-2 font-mono text-xs font-black transition ${
                                         recipientType === t
                                             ? 'border-purple-400 bg-purple-600 text-white shadow-md shadow-purple-900/40'
-                                            : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
+                                            : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-300 dark:hover:border-slate-700'
                                     }`}
                                 >
                                     {t}
@@ -144,7 +144,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     e.target.value as ComponentType,
                                 )
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:border-purple-500/50 focus:outline-none"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 focus:border-purple-500/50 focus:outline-none dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200"
                         >
                             <option value="Packed Red Blood Cells">
                                 Packed Red Blood Cells (PRBC)
@@ -160,7 +160,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                         </select>
                     </div>
 
-                    <div className="space-y-1 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-950/80 p-3 text-xs">
+                    <div className="space-y-1 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs dark:border-slate-800/80 dark:bg-slate-950/80">
                         <div className="flex items-center gap-1 font-medium text-slate-600 dark:text-slate-400">
                             <Info className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />{' '}
                             Rule Summary:
@@ -174,9 +174,9 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                 </div>
 
                 {/* Right Compatibility Results */}
-                <div className="flex flex-col justify-between rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-5 shadow-sm transition-colors lg:col-span-2">
+                <div className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors lg:col-span-2 dark:border-[#222F44] dark:bg-[#161D2A]">
                     <div>
-                        <div className="mb-4 flex items-center justify-between border-b border-slate-200 dark:border-[#222F44] pb-3">
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3 dark:border-[#222F44]">
                             <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">
                                 Compatible Donor Groups for Recipient{' '}
                                 <span className="font-mono text-base font-extrabold text-purple-600 dark:text-purple-400">
@@ -207,8 +207,8 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                         key={t}
                                         className={`flex flex-col justify-between rounded-xl border p-3.5 transition ${
                                             isCompatible
-                                                ? 'border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300'
-                                                : 'border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17]/60 text-slate-400 dark:text-slate-500 opacity-60'
+                                                ? 'border-emerald-500/40 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-300'
+                                                : 'border-slate-200 bg-slate-50 text-slate-400 opacity-60 dark:border-[#222F44] dark:bg-[#0B0F17]/60 dark:text-slate-500'
                                         }`}
                                     >
                                         <div className="flex items-center justify-between">
@@ -240,7 +240,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                     </div>
 
                     {/* Matching Units List */}
-                    <div className="rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] p-3 text-xs">
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs dark:border-[#222F44] dark:bg-[#0B0F17]">
                         <span className="mb-2 block font-bold text-slate-700 dark:text-slate-300">
                             Matching Ready Units in Inventory (
                             {matchingAvailableUnits.length}):
@@ -255,7 +255,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                 matchingAvailableUnits.map((u) => (
                                     <span
                                         key={u.id}
-                                        className="rounded border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] px-2.5 py-1 font-mono text-slate-800 dark:text-slate-200"
+                                        className="rounded border border-slate-200 bg-white px-2.5 py-1 font-mono text-slate-800 dark:border-[#222F44] dark:bg-[#161D2A] dark:text-slate-200"
                                     >
                                         {u.unitNumber} ({u.bloodType}) •{' '}
                                         {u.facilityName}
@@ -268,7 +268,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
             </div>
 
             {/* Test Pair Simulator Widget */}
-            <div className="rounded-2xl border border-slate-200 dark:border-[#222F44] bg-white dark:bg-[#161D2A] p-6 shadow-sm transition-colors">
+            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors dark:border-[#222F44] dark:bg-[#161D2A]">
                 <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 dark:text-slate-100">
                     <ShieldAlert className="h-5 w-5 text-amber-500 dark:text-amber-400" />
                     Electronic Cross-Match Pair Validation Simulator
@@ -286,7 +286,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     e.target.value as BloodType,
                                 )
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 focus:outline-none dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-200"
                         >
                             {bloodTypes.map((t) => (
                                 <option key={t} value={t}>
@@ -305,7 +305,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                             onChange={(e) =>
                                 setTestDonorType(e.target.value as BloodType)
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 focus:outline-none dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-200"
                         >
                             {bloodTypes.map((t) => (
                                 <option key={t} value={t}>
@@ -326,7 +326,7 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                                     e.target.value as ComponentType,
                                 )
                             }
-                            className="w-full rounded-xl border border-slate-200 dark:border-[#222F44] bg-slate-50 dark:bg-[#0B0F17] px-3 py-2 text-xs text-slate-800 dark:text-slate-200 focus:outline-none"
+                            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-800 focus:outline-none dark:border-[#222F44] dark:bg-[#0B0F17] dark:text-slate-200"
                         >
                             <option value="Packed Red Blood Cells">
                                 Packed Red Blood Cells
@@ -342,8 +342,8 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                 <div
                     className={`mt-4 flex items-center gap-3 rounded-xl border p-4 text-xs font-semibold ${
                         isTestCompatible
-                            ? 'border-emerald-500/40 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300'
-                            : 'border-rose-500/40 bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300'
+                            ? 'border-emerald-500/40 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/30 dark:text-emerald-300'
+                            : 'border-red-500/40 bg-red-50 text-red-800 dark:bg-red-950/40 dark:text-red-300'
                     }`}
                 >
                     {isTestCompatible ? (
@@ -368,9 +368,9 @@ export const CompatibilityEngineTab: React.FC<CompatibilityTabProps> = ({
                         </>
                     ) : (
                         <>
-                            <XCircle className="h-6 w-6 shrink-0 text-rose-600 dark:text-rose-500" />
+                            <XCircle className="h-6 w-6 shrink-0 text-red-600 dark:text-red-500" />
                             <div>
-                                <div className="text-sm font-bold text-rose-700 dark:text-rose-400">
+                                <div className="text-sm font-bold text-red-700 dark:text-red-400">
                                     FAILED: Transfusion Incompatibility Risk
                                 </div>
                                 <div className="text-slate-700 dark:text-slate-300">

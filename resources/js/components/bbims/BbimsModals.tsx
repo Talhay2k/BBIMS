@@ -152,10 +152,10 @@ export const BbimsModals: React.FC<ModalsProps> = ({
             {/* Intake Unit Modal */}
             {isIntakeOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                    <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
                             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-                                <Droplet className="h-5 w-5 text-rose-500" />
+                                <Droplet className="h-5 w-5 text-red-500" />
                                 Register New Blood Unit Intake
                             </h3>
                             <button
@@ -308,7 +308,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 </button>
                                 <button
                                     type="submit"
-                                    className="rounded-xl bg-rose-600 px-4 py-2 font-semibold text-white shadow-md shadow-rose-900/30 hover:bg-rose-500"
+                                    className="rounded-xl bg-red-600 px-4 py-2 font-semibold text-white shadow-md shadow-red-900/30 hover:bg-red-700"
                                 >
                                     Intake Unit
                                 </button>
@@ -321,10 +321,10 @@ export const BbimsModals: React.FC<ModalsProps> = ({
             {/* New Request Modal */}
             {isRequestOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                    <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
                             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
-                                <FilePlus className="h-5 w-5 text-rose-500 dark:text-rose-400" />
+                                <FilePlus className="h-5 w-5 text-red-500 dark:text-red-400" />
                                 Create Hospital Transfusion Request
                             </h3>
                             <button
@@ -491,7 +491,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
                                 </button>
                                 <button
                                     type="submit"
-                                    className="rounded-xl bg-rose-600 px-4 py-2 font-semibold text-white hover:bg-rose-500"
+                                    className="rounded-xl bg-red-600 px-4 py-2 font-semibold text-white hover:bg-red-700"
                                 >
                                     Submit Transfusion Request
                                 </button>
@@ -504,7 +504,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
             {/* Register Donor Modal */}
             {isDonorOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-lg space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                    <div className="w-full max-w-lg max-h-[90vh] overflow-y-auto space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
                             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
                                 <UserPlus className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -696,7 +696,7 @@ export const BbimsModals: React.FC<ModalsProps> = ({
             {/* Schedule Drive Modal */}
             {isDriveOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm">
-                    <div className="w-full max-w-md space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                    <div className="w-full max-w-md max-h-[90vh] overflow-y-auto space-y-4 rounded-2xl border border-slate-200 bg-white p-4 sm:p-6 shadow-2xl dark:border-slate-800 dark:bg-slate-900">
                         <div className="flex items-center justify-between border-b border-slate-200 pb-3 dark:border-slate-800">
                             <h3 className="flex items-center gap-2 text-base font-bold text-slate-900 dark:text-white">
                                 <Calendar className="h-5 w-5 text-purple-600 dark:text-purple-400" />

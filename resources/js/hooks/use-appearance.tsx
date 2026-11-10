@@ -19,7 +19,8 @@ const getStoredAppearance = (): Appearance => {
     return (localStorage.getItem('appearance') as Appearance) || 'dark';
 };
 
-let currentAppearance: Appearance = typeof window !== 'undefined' ? getStoredAppearance() : 'dark';
+let currentAppearance: Appearance =
+    typeof window !== 'undefined' ? getStoredAppearance() : 'dark';
 
 const prefersDark = (): boolean => {
     if (typeof window === 'undefined') {
@@ -76,11 +77,9 @@ export function initializeTheme(): void {
         return;
     }
 
-    // Always enforce dark mode — app uses dark slate theme globally
-    localStorage.setItem('appearance', 'dark');
-    setCookie('appearance', 'dark');
-    currentAppearance = 'dark';
-    applyTheme('dark');
+    const saved = (localStorage.getItem('appearance') as Appearance) || 'dark';
+    currentAppearance = saved;
+    applyTheme(saved);
 
     // Set up system theme change listener
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);

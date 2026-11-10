@@ -129,7 +129,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                             /* Collapsed View: Single centered expand button */
                             <button
                                 onClick={() => setIsCollapsed(false)}
-                                className="mx-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-800 bg-slate-900/90 text-rose-400 shadow-md transition-all duration-200 hover:bg-slate-800 hover:text-white active:scale-95"
+                                className="mx-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-slate-800 bg-slate-900/90 text-red-400 shadow-md transition-all duration-200 hover:bg-slate-800 hover:text-white active:scale-95"
                                 title="Expand Sidebar"
                             >
                                 <ChevronRight className="h-5 w-5" />
@@ -138,7 +138,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                             /* Expanded View: Logo + Title + Collapse Button */
                             <div className="flex w-full items-center justify-between">
                                 <div className="flex items-center gap-3 overflow-hidden">
-                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-600 via-red-600 to-rose-500 shadow-lg shadow-rose-900/40">
+                                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-red-600 via-red-600 to-red-500 shadow-lg shadow-red-900/40">
                                         <Droplet className="h-5 w-5 text-white" />
                                     </div>
                                     <div className="overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out">
@@ -179,10 +179,11 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                         {navSections.map((section, idx) => (
                             <div key={idx} className="space-y-1">
                                 <h2
-                                    className={`overflow-hidden px-3 text-[10px] font-bold tracking-wider whitespace-nowrap text-slate-500 uppercase transition-all duration-300 ease-in-out ${collapsedState
-                                        ? 'my-0 max-h-0 py-0 opacity-0'
-                                        : 'my-1 max-h-6 opacity-100'
-                                        }`}
+                                    className={`overflow-hidden px-3 text-[10px] font-bold tracking-wider whitespace-nowrap text-slate-500 uppercase transition-all duration-300 ease-in-out ${
+                                        collapsedState
+                                            ? 'my-0 max-h-0 py-0 opacity-0'
+                                            : 'my-1 max-h-6 opacity-100'
+                                    }`}
                                 >
                                     {section.title}
                                 </h2>
@@ -201,36 +202,40 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                                                         ? item.label
                                                         : undefined
                                                 }
-                                                className={`group relative flex w-full items-center gap-3.5 rounded-xl px-3.5 py-2.5 text-xs font-bold transition-all duration-200 ${isActive
-                                                    ? 'bg-rose-600 text-white shadow-lg shadow-rose-900/30'
-                                                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-900/80 hover:text-slate-900 dark:hover:text-slate-200'
-                                                    }`}
+                                                className={`group relative flex w-full items-center gap-3.5 rounded-xl px-3.5 py-2.5 text-xs font-bold transition-all duration-200 ${
+                                                    isActive
+                                                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/30'
+                                                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-900/80 dark:hover:text-slate-200'
+                                                }`}
                                             >
                                                 <div className="flex h-5 w-5 shrink-0 items-center justify-center">
                                                     <Icon
-                                                        className={`h-4 w-4 transition-colors ${isActive
-                                                            ? 'text-white'
-                                                            : 'text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200'
-                                                            }`}
+                                                        className={`h-4 w-4 transition-colors ${
+                                                            isActive
+                                                                ? 'text-white'
+                                                                : 'text-slate-500 group-hover:text-slate-900 dark:text-slate-400 dark:group-hover:text-slate-200'
+                                                        }`}
                                                     />
                                                 </div>
 
                                                 <span
-                                                    className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out ${collapsedState
-                                                        ? 'pointer-events-none max-w-0 opacity-0'
-                                                        : 'max-w-[160px] opacity-100'
-                                                        }`}
+                                                    className={`overflow-hidden whitespace-nowrap transition-all duration-300 ease-in-out ${
+                                                        collapsedState
+                                                            ? 'pointer-events-none max-w-0 opacity-0'
+                                                            : 'max-w-[160px] opacity-100'
+                                                    }`}
                                                 >
                                                     {item.label}
                                                 </span>
 
                                                 {item.badge &&
-                                                    item.badge > 0 ? (
+                                                item.badge > 0 ? (
                                                     <span
-                                                        className={`py-0.2 rounded-full bg-rose-500 px-1.5 text-[10px] font-black text-white transition-all duration-300 ${collapsedState
-                                                            ? 'absolute top-1 right-1'
-                                                            : 'ml-auto'
-                                                            }`}
+                                                        className={`py-0.2 rounded-full bg-red-500 px-1.5 text-[10px] font-black text-white transition-all duration-300 ${
+                                                            collapsedState
+                                                                ? 'absolute top-1 right-1'
+                                                                : 'ml-auto'
+                                                        }`}
                                                     >
                                                         {item.badge}
                                                     </span>
@@ -248,10 +253,11 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                 <div className="shrink-0 space-y-2 border-t border-slate-800/80 p-3">
                     {/* Expanded Action Grid */}
                     <div
-                        className={`space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${collapsedState
-                            ? 'pointer-events-none max-h-0 opacity-0'
-                            : 'max-h-40 opacity-100'
-                            }`}
+                        className={`space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                            collapsedState
+                                ? 'pointer-events-none max-h-0 opacity-0'
+                                : 'max-h-40 opacity-100'
+                        }`}
                     >
                         <div className="grid grid-cols-3 gap-1.5">
                             <button
@@ -259,7 +265,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                                     if (onOpenIntakeModal) onOpenIntakeModal();
                                     if (setIsMobileOpen) setIsMobileOpen(false);
                                 }}
-                                className="flex flex-col items-center justify-center rounded-xl bg-rose-600 p-2 text-[10px] font-bold text-white shadow transition hover:bg-rose-500 active:scale-95"
+                                className="flex flex-col items-center justify-center rounded-xl bg-red-600 p-2 text-[10px] font-bold text-white shadow transition hover:bg-red-700 active:scale-95"
                                 title="Intake Blood Unit"
                             >
                                 <PlusCircle className="mb-0.5 h-4 w-4" />
@@ -271,7 +277,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                                         onOpenRequestModal();
                                     if (setIsMobileOpen) setIsMobileOpen(false);
                                 }}
-                                className="flex flex-col items-center justify-center rounded-xl border border-rose-500/30 bg-slate-100 dark:bg-slate-900 p-2 text-[10px] font-bold text-rose-700 dark:text-rose-300 transition hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"
+                                className="flex flex-col items-center justify-center rounded-xl border border-red-500/30 bg-slate-100 p-2 text-[10px] font-bold text-red-700 transition hover:bg-slate-200 active:scale-95 dark:bg-slate-900 dark:text-red-300 dark:hover:bg-slate-800"
                                 title="New Hospital Request"
                             >
                                 <FilePlus className="mb-0.5 h-4 w-4" />
@@ -282,7 +288,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                                     if (onOpenDonorModal) onOpenDonorModal();
                                     if (setIsMobileOpen) setIsMobileOpen(false);
                                 }}
-                                className="flex flex-col items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-2 text-[10px] font-bold text-blue-700 dark:text-blue-300 transition hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"
+                                className="flex flex-col items-center justify-center rounded-xl border border-slate-200 bg-slate-100 p-2 text-[10px] font-bold text-blue-700 transition hover:bg-slate-200 active:scale-95 dark:border-slate-800 dark:bg-slate-900 dark:text-blue-300 dark:hover:bg-slate-800"
                                 title="Register New Donor"
                             >
                                 <UserPlus className="mb-0.5 h-4 w-4 text-blue-500 dark:text-blue-400" />
@@ -290,7 +296,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                             </button>
                         </div>
 
-                        <div className="flex items-center justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-2 text-[11px]">
+                        <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-100/90 px-3 py-2 text-[11px] dark:border-slate-800 dark:bg-slate-900/90">
                             <span className="flex items-center gap-1.5 font-medium text-slate-600 dark:text-slate-400">
                                 <Thermometer className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" />
                                 Cold Chain
@@ -303,7 +309,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                         {/* Theme Toggle Button */}
                         <button
                             onClick={toggleTheme}
-                            className="flex w-full items-center justify-between rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-2 text-[11px] font-semibold text-slate-800 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition active:scale-95"
+                            className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-slate-100/90 px-3 py-2 text-[11px] font-semibold text-slate-800 transition hover:bg-slate-200 hover:text-slate-900 active:scale-95 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                             title={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
                         >
                             <span className="flex items-center gap-2">
@@ -314,7 +320,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                                 )}
                                 Theme Mode
                             </span>
-                            <span className="text-[10px] font-bold uppercase text-slate-500">
+                            <span className="text-[10px] font-bold text-slate-500 uppercase">
                                 {resolvedAppearance}
                             </span>
                         </button>
@@ -323,16 +329,16 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                         <div className="flex items-center gap-2 pt-1">
                             <Link
                                 href="/login"
-                                className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/90 py-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+                                className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-slate-200 bg-slate-100 py-1.5 text-[11px] font-semibold text-slate-700 transition-colors hover:bg-slate-200 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                             >
-                                <LogIn className="h-3 w-3 text-rose-500 dark:text-rose-400" />
+                                <LogIn className="h-3 w-3 text-red-500 dark:text-red-400" />
                                 Sign In
                             </Link>
                             <Link
                                 href="/register"
-                                className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/90 py-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors"
+                                className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-slate-200 bg-slate-100 py-1.5 text-[11px] font-semibold text-slate-700 transition-colors hover:bg-slate-200 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                             >
-                                <UserPlus className="h-3 w-3 text-rose-500 dark:text-rose-400" />
+                                <UserPlus className="h-3 w-3 text-red-500 dark:text-red-400" />
                                 Sign Up
                             </Link>
                         </div>
@@ -340,10 +346,11 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
 
                     {/* Collapsed Action Buttons */}
                     <div
-                        className={`flex flex-col items-center space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${collapsedState
-                            ? 'max-h-40 opacity-100'
-                            : 'pointer-events-none max-h-0 opacity-0'
-                            }`}
+                        className={`flex flex-col items-center space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                            collapsedState
+                                ? 'max-h-40 opacity-100'
+                                : 'pointer-events-none max-h-0 opacity-0'
+                        }`}
                     >
                         <button
                             onClick={toggleTheme}
@@ -358,14 +365,14 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                         </button>
                         <button
                             onClick={onOpenIntakeModal}
-                            className="rounded-xl bg-rose-600 p-2.5 text-white shadow transition hover:bg-rose-500 active:scale-95"
+                            className="rounded-xl bg-red-600 p-2.5 text-white shadow transition hover:bg-red-700 active:scale-95"
                             title="Intake Blood Unit"
                         >
                             <PlusCircle className="h-5 w-5" />
                         </button>
                         <button
                             onClick={onOpenRequestModal}
-                            className="rounded-xl border border-rose-500/30 bg-slate-900 p-2.5 text-rose-300 transition hover:bg-slate-800 active:scale-95"
+                            className="rounded-xl border border-red-500/30 bg-slate-900 p-2.5 text-red-300 transition hover:bg-slate-800 active:scale-95"
                             title="New Hospital Request"
                         >
                             <FilePlus className="h-5 w-5" />
@@ -380,8 +387,9 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
         <>
             {/* Desktop Sticky Sidebar with hardware-accelerated width transitions */}
             <aside
-                className={`sticky top-0 z-40 hidden h-screen flex-col justify-between overflow-hidden border-r border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0b0f19] text-slate-900 dark:text-white shadow-xl dark:shadow-2xl transition-[width] duration-300 ease-in-out will-change-[width] lg:flex ${isCollapsed ? 'w-20' : 'w-64'
-                    }`}
+                className={`sticky top-0 z-40 hidden h-screen flex-col justify-between overflow-hidden border-r border-slate-200 bg-white text-slate-900 shadow-xl transition-[width] duration-300 ease-in-out will-change-[width] lg:flex dark:border-slate-800/80 dark:bg-[#0b0f19] dark:text-white dark:shadow-2xl ${
+                    isCollapsed ? 'w-20' : 'w-64'
+                }`}
             >
                 {sidebarContent(false)}
             </aside>
@@ -395,7 +403,7 @@ export const BbimsSidebarComponent: React.FC<SidebarProps> = ({
                         }
                         className="fixed inset-0 animate-in bg-black/70 backdrop-blur-sm transition-opacity duration-200 fade-in"
                     />
-                    <aside className="fixed inset-y-0 left-0 z-50 w-72 animate-in overflow-hidden border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b0f19] text-slate-900 dark:text-white shadow-2xl duration-300 slide-in-from-left">
+                    <aside className="fixed inset-y-0 left-0 z-50 w-72 animate-in overflow-hidden border-r border-slate-200 bg-white text-slate-900 shadow-2xl duration-300 slide-in-from-left dark:border-slate-800 dark:bg-[#0b0f19] dark:text-white">
                         {sidebarContent(true)}
                     </aside>
                 </div>

@@ -53,7 +53,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
     };
 
     return (
-        <header className="sticky top-0 z-30 border-b border-slate-200 dark:border-slate-800/80 bg-white/95 dark:bg-[#0b0f19]/95 text-slate-900 dark:text-white shadow-md dark:shadow-2xl backdrop-blur-md transition-colors duration-200">
+        <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 text-slate-900 shadow-md backdrop-blur-md transition-colors duration-200 dark:border-slate-800/80 dark:bg-[#0b0f19]/95 dark:text-white dark:shadow-2xl">
             {/* Top Bar */}
             <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
                 {/* Logo & Brand */}
@@ -62,14 +62,14 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     {onToggleMobileSidebar && (
                         <button
                             onClick={onToggleMobileSidebar}
-                            className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-2 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 lg:hidden"
+                            className="rounded-xl border border-slate-200 bg-slate-100 p-2 text-slate-700 hover:bg-slate-200 lg:hidden dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800"
                             title="Toggle Navigation Menu"
                         >
                             <Menu className="h-5 w-5" />
                         </button>
                     )}
 
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-rose-600 via-red-600 to-rose-500 shadow-lg shadow-rose-900/40">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-red-600 via-red-600 to-red-500 shadow-lg shadow-red-900/40">
                         <Droplet className="h-5 w-5 text-white" />
                     </div>
                     <div>
@@ -77,11 +77,11 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                             <h1 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">
                                 BloodMatrix
                             </h1>
-                            <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2 py-0.5 text-[10px] font-extrabold text-rose-600 dark:text-rose-400">
+                            <span className="rounded-full border border-red-500/20 bg-red-500/10 px-2 py-0.5 text-[10px] font-extrabold text-red-600 dark:text-red-400">
                                 Live System
                             </span>
                         </div>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                        <p className="hidden text-[11px] text-slate-500 sm:block dark:text-slate-400">
                             Multi-Facility Inventory • Telemetry • AI Expiry
                             Risk
                         </p>
@@ -89,30 +89,32 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                 </div>
 
                 {/* Facility Selector & Quick Actions */}
-                <div className="flex flex-wrap items-center gap-2.5">
+                <div className="flex flex-wrap items-center gap-2">
                     {/* Telemetry Status Pill */}
-                    <div className="hidden items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-1.5 text-xs text-slate-700 dark:text-slate-300 lg:flex">
+                    <div className="hidden items-center gap-2 rounded-xl border border-slate-200 bg-slate-100/90 px-3 py-1.5 text-xs text-slate-700 lg:flex dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300">
                         <Thermometer className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" />
                         <span>Vault 3.8°C</span>
-                        <span className="text-slate-400 dark:text-slate-600">•</span>
+                        <span className="text-slate-400 dark:text-slate-600">
+                            •
+                        </span>
                         <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
                             <CheckCircle2 className="h-3 w-3" /> Normal
                         </span>
                     </div>
 
                     {/* Facility Switcher */}
-                    <div className="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 px-3 py-1.5">
-                        <Building2 className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
+                    <div className="flex max-w-[130px] items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100/90 px-2.5 py-1.5 sm:max-w-[200px] md:max-w-none dark:border-slate-800 dark:bg-slate-900/90">
+                        <Building2 className="h-3.5 w-3.5 shrink-0 text-red-500 dark:text-red-400" />
                         <select
                             value={selectedFacilityId}
                             onChange={(e) =>
                                 setSelectedFacilityId(e.target.value)
                             }
-                            className="cursor-pointer truncate bg-transparent pr-1 text-xs font-semibold text-slate-800 dark:text-slate-200 focus:outline-none"
+                            className="cursor-pointer truncate bg-transparent pr-1 text-xs font-semibold text-slate-800 focus:outline-none dark:text-slate-200"
                         >
                             <option
                                 value="All"
-                                className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200"
+                                className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-200"
                             >
                                 All Facilities (Global)
                             </option>
@@ -120,7 +122,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                                 <option
                                     key={fac.id}
                                     value={fac.id}
-                                    className="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-200"
+                                    className="bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-200"
                                 >
                                     {fac.name}
                                 </option>
@@ -133,16 +135,16 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                         onClick={() =>
                             setActiveTab(
                                 pendingRequestsCount > 0
-                                    ? 'requests'
-                                    : 'inventory',
+                                     ? 'requests'
+                                     : 'inventory',
                             )
                         }
-                        className="relative rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 p-2 text-slate-700 dark:text-slate-300 transition hover:bg-slate-200 dark:hover:bg-slate-800"
+                        className="relative rounded-xl border border-slate-200 bg-slate-100/90 p-2 text-slate-700 transition hover:bg-slate-200 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:bg-slate-800"
                         title="Alerts"
                     >
                         <Bell className="h-4 w-4" />
                         {totalAlerts > 0 && (
-                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-rose-600 text-[10px] font-black text-white shadow">
+                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-600 text-[10px] font-black text-white shadow">
                                 {totalAlerts}
                             </span>
                         )}
@@ -151,7 +153,7 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     {/* Theme Mode Switcher */}
                     <button
                         onClick={toggleTheme}
-                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/90 dark:bg-slate-900/90 p-2 text-slate-700 dark:text-slate-300 transition hover:bg-slate-200 dark:hover:bg-slate-800 active:scale-95"
+                        className="rounded-xl border border-slate-200 bg-slate-100/90 p-2 text-slate-700 transition hover:bg-slate-200 active:scale-95 dark:border-slate-800 dark:bg-slate-900/90 dark:text-slate-300 dark:hover:bg-slate-800"
                         title={`Switch to ${resolvedAppearance === 'dark' ? 'Light' : 'Dark'} Mode`}
                     >
                         {resolvedAppearance === 'dark' ? (
@@ -165,25 +167,26 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     <div className="flex items-center gap-1.5">
                         <Link
                             href="/login"
-                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-200 hover:text-slate-900 sm:px-3 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                         >
-                            <LogIn className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
-                            Sign In
+                            <LogIn className="h-3.5 w-3.5 text-red-500 dark:text-red-400" />
+                            <span className="hidden sm:inline">Sign In</span>
                         </Link>
                         <Link
                             href="/register"
-                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 transition-colors hover:bg-slate-200 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white"
+                            className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-200 hover:text-slate-900 sm:px-3 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                         >
-                            <UserPlus className="h-3.5 w-3.5 text-rose-500 dark:text-rose-400" />
-                            Sign Up
+                            <UserPlus className="h-3.5 w-3.5 text-red-500 dark:text-red-400" />
+                            <span className="hidden sm:inline">Sign Up</span>
                         </Link>
                         {onSwitchToLanding && (
                             <button
                                 onClick={onSwitchToLanding}
-                                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/90 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 transition hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-white"
+                                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-200 hover:text-slate-900 sm:px-3 dark:border-slate-700 dark:bg-slate-800/90 dark:text-slate-200 dark:hover:bg-slate-700 dark:hover:text-white"
                                 title="Return to Product Landing Page"
                             >
-                                🌐 Landing Page
+                                <span>🌐</span>
+                                <span className="hidden md:inline">Landing Page</span>
                             </button>
                         )}
                     </div>
@@ -191,21 +194,22 @@ export const BbimsHeader: React.FC<HeaderProps> = ({
                     {/* Action Buttons */}
                     <button
                         onClick={onOpenIntakeModal}
-                        className="inline-flex items-center gap-1 rounded-xl bg-rose-600 px-3.5 py-1.5 text-xs font-bold text-white shadow-md shadow-rose-900/30 transition hover:bg-rose-500 active:scale-95"
+                        className="inline-flex items-center gap-1 rounded-xl bg-red-600 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-red-900/30 transition hover:bg-red-700 active:scale-95 sm:px-3.5"
                     >
                         <Plus className="h-4 w-4" />
-                        Intake Unit
+                        <span className="hidden sm:inline">Intake Unit</span>
+                        <span className="sm:hidden">Intake</span>
                     </button>
                     <button
                         onClick={onOpenRequestModal}
-                        className="inline-flex items-center gap-1 rounded-xl border border-rose-500/30 bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-rose-300 transition hover:bg-slate-800 active:scale-95"
+                        className="hidden items-center gap-1 rounded-xl border border-red-500/30 bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-red-300 transition hover:bg-slate-800 active:scale-95 sm:inline-flex"
                     >
                         <Plus className="h-4 w-4" />
                         New Request
                     </button>
                     <button
                         onClick={onOpenDonorModal}
-                        className="inline-flex items-center gap-1 rounded-xl border border-slate-800 bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-slate-200 transition hover:bg-slate-800 active:scale-95"
+                        className="hidden items-center gap-1 rounded-xl border border-slate-800 bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-slate-200 transition hover:bg-slate-800 active:scale-95 md:inline-flex"
                     >
                         <Plus className="h-4 w-4 text-blue-400" />
                         New Donor

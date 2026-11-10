@@ -31,7 +31,8 @@ type Props = {
 type UserCategory = 'blood_bank' | 'hospital' | 'ministry';
 
 export default function Login({ status, canResetPassword }: Props) {
-    const [portalCategory, setPortalCategory] = useState<UserCategory>('hospital');
+    const [portalCategory, setPortalCategory] =
+        useState<UserCategory>('hospital');
 
     const portals = {
         blood_bank: {
@@ -40,8 +41,9 @@ export default function Login({ status, canResetPassword }: Props) {
             icon: Building2,
             placeholder: 'vault.manager@centralbloodbank.org',
             helper: 'Cold-Chain Telemetry, Donor Drives & Inventory',
-            color: 'text-rose-700 dark:text-rose-400 bg-rose-500/10 border-rose-500/30',
-            activePill: 'border-rose-500 text-rose-700 dark:text-rose-400 bg-rose-50 dark:bg-rose-500/10 ring-1 ring-rose-500/30',
+            color: 'text-red-700 dark:text-red-400 bg-red-500/10 border-red-500/30',
+            activePill:
+                'border-red-500 text-red-700 dark:text-red-400 bg-red-50 dark:bg-red-500/10 ring-1 ring-red-500/30',
         },
         hospital: {
             title: 'Hospital STAT Hub',
@@ -50,7 +52,8 @@ export default function Login({ status, canResetPassword }: Props) {
             placeholder: 'trauma.chief@stjudehospital.org',
             helper: 'STAT Transfusion Requests & Sub-3 min Cross-Matching',
             color: 'text-blue-700 dark:text-blue-400 bg-blue-500/10 border-blue-500/30',
-            activePill: 'border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 ring-1 ring-blue-500/30',
+            activePill:
+                'border-blue-500 text-blue-700 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 ring-1 ring-blue-500/30',
         },
         ministry: {
             title: 'Ministry Oversight',
@@ -59,7 +62,8 @@ export default function Login({ status, canResetPassword }: Props) {
             placeholder: 'compliance@health.gov.om',
             helper: 'Vein-to-Vein Immutable Audit & Regional Reserves',
             color: 'text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
-            activePill: 'border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 ring-1 ring-emerald-500/30',
+            activePill:
+                'border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 ring-1 ring-emerald-500/30',
         },
     };
 
@@ -73,16 +77,16 @@ export default function Login({ status, canResetPassword }: Props) {
             <PasskeyVerify />
 
             {/* Form Mode Toggle */}
-            <div className="flex rounded-xl bg-slate-200 dark:bg-slate-900 p-1 border border-slate-300 dark:border-slate-800 text-xs font-semibold">
+            <div className="flex rounded-xl border border-slate-300 bg-slate-200 p-1 text-xs font-semibold dark:border-slate-800 dark:bg-slate-900">
                 <button
                     type="button"
-                    className="flex-1 py-1 text-center rounded-lg bg-rose-600 text-white font-bold shadow-md"
+                    className="flex-1 rounded-lg bg-red-600 py-1 text-center font-bold text-white shadow-md"
                 >
                     Sign In
                 </button>
                 <Link
                     href={register()}
-                    className="flex-1 py-1 text-center rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    className="flex-1 rounded-lg py-1 text-center text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 >
                     Create Account
                 </Link>
@@ -91,11 +95,13 @@ export default function Login({ status, canResetPassword }: Props) {
             {/* Target User Portal Switcher - Pill Buttons */}
             <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                    <Label className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                        <Activity className="h-3 w-3 text-rose-500" />
+                    <Label className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+                        <Activity className="h-3 w-3 text-red-500" />
                         Select Portal Context
                     </Label>
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Target User Access</span>
+                    <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                        Target User Access
+                    </span>
                 </div>
 
                 <div className="grid grid-cols-3 gap-1.5">
@@ -109,14 +115,17 @@ export default function Login({ status, canResetPassword }: Props) {
                                 key={key}
                                 type="button"
                                 onClick={() => setPortalCategory(key)}
-                                className={`h-8 px-2 rounded-full border text-left transition-all flex items-center justify-center gap-1.5 ${
+                                className={`flex h-8 items-center justify-center gap-1.5 rounded-full border px-2 text-left transition-all ${
                                     isSelected
-                                        ? item.activePill + ' font-bold shadow-sm'
-                                        : 'bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:border-slate-300 dark:hover:border-slate-700 shadow-xs'
+                                        ? item.activePill +
+                                          ' font-bold shadow-sm'
+                                        : 'border-slate-200 bg-white text-slate-600 shadow-xs hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/80 dark:text-slate-400 dark:hover:border-slate-700'
                                 }`}
                             >
                                 <Icon className="h-3.5 w-3.5 shrink-0" />
-                                <span className="text-[10px] truncate">{item.title}</span>
+                                <span className="truncate text-[10px]">
+                                    {item.title}
+                                </span>
                             </button>
                         );
                     })}
@@ -133,8 +142,11 @@ export default function Login({ status, canResetPassword }: Props) {
                     <div className="space-y-2.5">
                         {/* Email Address */}
                         <div className="space-y-1">
-                            <Label htmlFor="email" className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                                <Mail className="h-3 w-3 text-rose-500" />
+                            <Label
+                                htmlFor="email"
+                                className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300"
+                            >
+                                <Mail className="h-3 w-3 text-red-500" />
                                 Work Email Address
                             </Label>
                             <div className="relative">
@@ -147,7 +159,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                     tabIndex={1}
                                     autoComplete="email"
                                     placeholder={currentPortal.placeholder}
-                                    className="h-8.5 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-800 focus:border-rose-500 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 rounded-xl"
+                                    className="h-8.5 rounded-xl border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-600"
                                 />
                             </div>
                             <InputError message={errors.email} />
@@ -156,14 +168,17 @@ export default function Login({ status, canResetPassword }: Props) {
                         {/* Password */}
                         <div className="space-y-1">
                             <div className="flex items-center justify-between">
-                                <Label htmlFor="password" className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                                    <Lock className="h-3 w-3 text-rose-500" />
+                                <Label
+                                    htmlFor="password"
+                                    className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300"
+                                >
+                                    <Lock className="h-3 w-3 text-red-500" />
                                     Security Password
                                 </Label>
                                 {canResetPassword && (
                                     <TextLink
                                         href={request()}
-                                        className="text-[10px] text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300 font-medium"
+                                        className="text-[10px] font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300"
                                         tabIndex={5}
                                     >
                                         Forgot password?
@@ -177,7 +192,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 tabIndex={2}
                                 autoComplete="current-password"
                                 placeholder="Enter security password"
-                                className="h-8.5 bg-white dark:bg-slate-900 border-slate-300 dark:border-slate-800 focus:border-rose-500 text-xs text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-600 rounded-xl"
+                                className="h-8.5 rounded-xl border-slate-300 bg-white text-xs text-slate-900 placeholder:text-slate-400 focus:border-red-500 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:placeholder:text-slate-600"
                             />
                             <InputError message={errors.password} />
                         </div>
@@ -188,9 +203,12 @@ export default function Login({ status, canResetPassword }: Props) {
                                 id="remember"
                                 name="remember"
                                 tabIndex={3}
-                                className="border-slate-300 dark:border-slate-700 data-[state=checked]:bg-rose-600 data-[state=checked]:border-rose-600"
+                                className="border-slate-300 data-[state=checked]:border-red-600 data-[state=checked]:bg-red-600 dark:border-slate-700"
                             />
-                            <Label htmlFor="remember" className="text-[10px] sm:text-[11px] text-slate-700 dark:text-slate-300 font-medium cursor-pointer">
+                            <Label
+                                htmlFor="remember"
+                                className="cursor-pointer text-[10px] font-medium text-slate-700 sm:text-[11px] dark:text-slate-300"
+                            >
                                 Remember session on this clinical station
                             </Label>
                         </div>
@@ -198,7 +216,7 @@ export default function Login({ status, canResetPassword }: Props) {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="mt-0.5 w-full h-9 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold text-xs shadow-md shadow-rose-950/20 dark:shadow-rose-950/60 rounded-xl border border-rose-400/20 transition-all flex items-center justify-center gap-2 group"
+                            className="group mt-0.5 flex h-9 w-full items-center justify-center gap-2 rounded-xl border border-red-400/20 bg-gradient-to-r from-red-600 to-red-500 text-xs font-bold text-white shadow-md shadow-red-950/20 transition-all hover:from-red-500 hover:to-red-600 dark:shadow-red-950/60"
                             tabIndex={4}
                             disabled={processing}
                             data-test="login-button"
@@ -207,8 +225,10 @@ export default function Login({ status, canResetPassword }: Props) {
                                 <Spinner />
                             ) : (
                                 <>
-                                    <span>Sign In to {currentPortal.title}</span>
-                                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    <span>
+                                        Sign In to {currentPortal.title}
+                                    </span>
+                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </>
                             )}
                         </Button>
@@ -217,15 +237,17 @@ export default function Login({ status, canResetPassword }: Props) {
             </Form>
 
             {status && (
-                <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/10 p-2 text-center text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
                     {status}
                 </div>
             )}
 
             {/* Compliance Footer Note */}
-            <div className="pt-0.5 text-center text-[10px] text-slate-500 dark:text-slate-400 flex items-center justify-center gap-1">
+            <div className="flex items-center justify-center gap-1 pt-0.5 text-center text-[10px] text-slate-500 dark:text-slate-400">
                 <ShieldCheck className="h-3 w-3 text-slate-400 dark:text-slate-500" />
-                <span>Protected by 256-bit Encrypted Telemetry & MFA Guard</span>
+                <span>
+                    Protected by 256-bit Encrypted Telemetry & MFA Guard
+                </span>
             </div>
         </div>
     );
@@ -233,8 +255,6 @@ export default function Login({ status, canResetPassword }: Props) {
 
 Login.layout = {
     title: 'Sign In to Command Center',
-    description: 'Enter your credentials to access blood bank telemetry, STAT hospital orders & ministry oversight',
+    description:
+        'Enter your credentials to access blood bank telemetry, STAT hospital orders & ministry oversight',
 };
-
-
-

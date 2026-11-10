@@ -73,7 +73,7 @@ class ErrorBoundary extends React.Component<
             return (
                 <div className="flex min-h-screen flex-col items-center justify-center bg-slate-950 p-6 text-center text-white">
                     <div className="max-w-md space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-8 shadow-2xl">
-                        <h2 className="text-xl font-bold text-rose-500">
+                        <h2 className="text-xl font-bold text-red-500">
                             Blood Bank System Operational Recovery
                         </h2>
                         <p className="text-xs text-slate-400">
@@ -82,7 +82,7 @@ class ErrorBoundary extends React.Component<
                         </p>
                         <button
                             onClick={() => window.location.reload()}
-                            className="rounded-xl bg-rose-600 px-4 py-2 text-xs font-semibold text-white hover:bg-rose-500"
+                            className="rounded-xl bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700"
                         >
                             Reload Dashboard
                         </button>
@@ -387,6 +387,118 @@ export default function Welcome() {
         }
     };
 
+    const handleEditUnit = async (id: string, data: any) => {
+        try {
+            const res = await fetch(`${API_BASE}/inventory/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                toast.success('Blood unit updated successfully');
+                void fetchAllData();
+            }
+        } catch {
+            setUnits((prev) => prev.map((u) => (u.id === id ? { ...u, ...data } : u)));
+        }
+    };
+
+    const handleDeleteUnit = async (id: string) => {
+        try {
+            const res = await fetch(`${API_BASE}/inventory/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Blood unit removed from inventory');
+                void fetchAllData();
+            }
+        } catch {
+            setUnits((prev) => prev.filter((u) => u.id !== id));
+        }
+    };
+
+    const handleEditDonor = async (id: string, data: any) => {
+        try {
+            const res = await fetch(`${API_BASE}/donors/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                toast.success('Donor profile updated');
+                void fetchAllData();
+            }
+        } catch {
+            setDonors((prev) => prev.map((d) => (d.id === id ? { ...d, ...data } : d)));
+        }
+    };
+
+    const handleDeleteDonor = async (id: string) => {
+        try {
+            const res = await fetch(`${API_BASE}/donors/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Donor record removed');
+                void fetchAllData();
+            }
+        } catch {
+            setDonors((prev) => prev.filter((d) => d.id !== id));
+        }
+    };
+
+    const handleEditRequest = async (id: string, data: any) => {
+        try {
+            const res = await fetch(`${API_BASE}/requests/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                toast.success('Hospital request updated');
+                void fetchAllData();
+            }
+        } catch {
+            setRequests((prev) => prev.map((r) => (r.id === id ? { ...r, ...data } : r)));
+        }
+    };
+
+    const handleDeleteRequest = async (id: string) => {
+        try {
+            const res = await fetch(`${API_BASE}/requests/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Hospital request cancelled and removed');
+                void fetchAllData();
+            }
+        } catch {
+            setRequests((prev) => prev.filter((r) => r.id !== id));
+        }
+    };
+
+    const handleEditDrive = async (id: string, data: any) => {
+        try {
+            const res = await fetch(`${API_BASE}/drives/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+            if (res.ok) {
+                toast.success('Donation campaign updated');
+                void fetchAllData();
+            }
+        } catch {
+            setDrives((prev) => prev.map((d) => (d.id === id ? { ...d, ...data } : d)));
+        }
+    };
+
+    const handleDeleteDrive = async (id: string) => {
+        try {
+            const res = await fetch(`${API_BASE}/drives/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                toast.success('Donation campaign removed');
+                void fetchAllData();
+            }
+        } catch {
+            setDrives((prev) => prev.filter((d) => d.id !== id));
+        }
+    };
+
     const expiringCount = safeUnits.filter((u) => {
         if (u.status !== 'Available') return false;
         const exp = new Date(u.expiryDate);
@@ -407,7 +519,7 @@ export default function Welcome() {
                 <Toaster position="top-right" theme="dark" richColors />
                 <React.Suspense
                     fallback={
-                        <div className="flex min-h-screen items-center justify-center bg-slate-950 font-sans text-xs font-semibold text-rose-400">
+                        <div className="flex min-h-screen items-center justify-center bg-slate-950 font-sans text-xs font-semibold text-red-400">
                             Loading BloodMatrix Platform...
                         </div>
                     }
@@ -425,7 +537,7 @@ export default function Welcome() {
 
     return (
         <ErrorBoundary>
-            <div className="flex min-h-screen bg-slate-100 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 selection:bg-rose-500 selection:text-white transition-colors duration-200">
+            <div className="flex min-h-screen bg-slate-100 font-sans text-slate-900 transition-colors duration-200 selection:bg-red-500 selection:text-white dark:bg-slate-950 dark:text-slate-100">
                 <Head title="BloodMatrix - Command Dashboard" />
                 <Toaster position="top-right" theme="dark" richColors />
 
@@ -466,7 +578,7 @@ export default function Welcome() {
                         onSwitchToLanding={() => setViewMode('landing')}
                     />
 
-                    <main className="mx-auto w-full max-w-7xl flex-1 px-4 pt-6 sm:px-6 lg:px-8">
+                    <main className="mx-auto w-full max-w-7xl flex-1 space-y-6 px-3.5 pt-6 sm:px-6 lg:px-8">
                         <StatsSummary
                             units={filteredUnits}
                             donors={safeDonors}
@@ -488,6 +600,8 @@ export default function Welcome() {
                                         setIsIntakeOpen(true)
                                     }
                                     onUpdateStatus={handleUpdateStatus}
+                                    onEditUnit={handleEditUnit}
+                                    onDeleteUnit={handleDeleteUnit}
                                 />
                                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                                     <AiForecastTab aiData={aiData} />
@@ -501,6 +615,8 @@ export default function Welcome() {
                                             handleCrossMatchUnits
                                         }
                                         onDispatchOrder={handleDispatchOrder}
+                                        onEditRequest={handleEditRequest}
+                                        onDeleteRequest={handleDeleteRequest}
                                     />
                                 </div>
                             </div>
@@ -511,6 +627,8 @@ export default function Welcome() {
                                 units={filteredUnits}
                                 onOpenIntakeModal={() => setIsIntakeOpen(true)}
                                 onUpdateStatus={handleUpdateStatus}
+                                onEditUnit={handleEditUnit}
+                                onDeleteUnit={handleDeleteUnit}
                             />
                         )}
 
@@ -520,6 +638,8 @@ export default function Welcome() {
                                 facilities={facilities}
                                 onOpenRegisterModal={() => setIsDonorOpen(true)}
                                 onRecordDonation={handleRecordDonation}
+                                onEditDonor={handleEditDonor}
+                                onDeleteDonor={handleDeleteDonor}
                             />
                         )}
 
@@ -532,6 +652,8 @@ export default function Welcome() {
                                 }
                                 onCrossMatchUnits={handleCrossMatchUnits}
                                 onDispatchOrder={handleDispatchOrder}
+                                onEditRequest={handleEditRequest}
+                                onDeleteRequest={handleDeleteRequest}
                             />
                         )}
 
@@ -547,6 +669,8 @@ export default function Welcome() {
                                 onOpenScheduleDriveModal={() =>
                                     setIsDriveOpen(true)
                                 }
+                                onEditDrive={handleEditDrive}
+                                onDeleteDrive={handleDeleteDrive}
                             />
                         )}
 

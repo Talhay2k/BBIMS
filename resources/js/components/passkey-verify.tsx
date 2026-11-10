@@ -45,11 +45,15 @@ export default function PasskeyVerify({
                 <Button
                     type="button"
                     variant="outline"
-                    className="w-full h-9 rounded-xl border border-slate-300 dark:border-slate-800 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-semibold shadow-xs transition-colors"
+                    className="h-9 w-full rounded-xl border border-slate-300 bg-white text-xs font-semibold text-slate-800 shadow-xs transition-colors hover:bg-slate-100 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                     onClick={verify}
                     disabled={isLoading}
                 >
-                    {isLoading ? <Spinner /> : <KeyRound className="h-4 w-4 text-rose-500" />}
+                    {isLoading ? (
+                        <Spinner />
+                    ) : (
+                        <KeyRound className="h-4 w-4 text-red-500" />
+                    )}
                     {isLoading
                         ? (loadingLabel ?? 'Authenticating...')
                         : (label ?? 'Sign in with a passkey')}
@@ -63,8 +67,8 @@ export default function PasskeyVerify({
                 <div className="absolute inset-0 flex items-center">
                     <Separator className="w-full bg-slate-200 dark:bg-slate-800" />
                 </div>
-                <div className="relative flex justify-center text-[10px] uppercase font-bold tracking-wider">
-                    <span className="bg-slate-50 dark:bg-slate-950 px-2.5 text-slate-500 dark:text-slate-400">
+                <div className="relative flex justify-center text-[10px] font-bold tracking-wider uppercase">
+                    <span className="bg-slate-50 px-2.5 text-slate-500 dark:bg-slate-950 dark:text-slate-400">
                         {separator ?? 'Or continue with email'}
                     </span>
                 </div>
